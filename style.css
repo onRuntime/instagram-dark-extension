@@ -1,0 +1,32 @@
+:root {
+    --b3f: 0, 0, 0 !important;
+    --i1d: 255, 255, 255 !important;
+    --d87: 0, 0, 0 !important;
+    --b6a: 38, 38, 38 !important;
+    --f75: 255, 255, 255 !important;
+    --f23: 255, 255, 255 !important;
+    --ce3: 38, 38, 38 !important;
+    --b38: 38, 38, 38 !important;
+}
+
+body {
+    background: black !important;
+}
+
+svg {
+    fill: rgb(255, 255, 255) !important;
+}
+
+/* from black to white (TODO: class of 'SAVED' NullStat) */
+
+.s4Iyt, .felixSpriteProfileChannelNullStat, .coreSpriteTaggedNull {
+    filter: brightness(0) invert(1);
+    -webkit-filter: brightness(0) invert(1);
+}
+
+/* from white to black 
+
+. {
+    filter: grayscale(1) invert(1);
+    -webkit-filter: grayscale(1) invert(1);
+}*/

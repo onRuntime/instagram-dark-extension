@@ -1,0 +1,16 @@
+{
+    "name": "Instagram Dark",
+    "version": "1.0",
+    "description": "Dark Theme for Instagram | Chrome Extension",
+    "content_scripts": [
+        {
+            "css": [
+                "style.css"
+            ],
+            "matches": [
+                "*://*.instagram.com/*"
+            ]
+        }
+    ],
+    "manifest_version": 2
+}
