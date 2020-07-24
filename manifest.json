@@ -1,6 +1,6 @@
 {
     "name": "Instagram Dark Theme",
-    "version": "1.0",
+    "version": "1.0.1",
     "description": "Dark Theme for Instagram",
     "content_scripts": [
         {
