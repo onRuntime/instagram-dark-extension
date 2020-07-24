@@ -1,12 +1,22 @@
 :root {
+    /* Black */
     --b3f: 0, 0, 0 !important;
-    --i1d: 255, 255, 255 !important;
     --d87: 0, 0, 0 !important;
-    --b6a: 38, 38, 38 !important;
+
+    /* White */
+    --i1d: 255, 255, 255 !important;
     --f75: 255, 255, 255 !important;
-    --f23: 255, 255, 255 !important;
+    --f23: 0, 0, 0 !important;
+
+    /* Grey */
     --ce3: 38, 38, 38 !important;
     --b38: 38, 38, 38 !important;
+    --b6a: 38, 38, 38 !important;
+    --ca6: 38, 38, 38 !important;
+    --bb2: 38, 38, 38 !important;
+
+    /* Others */
+    --fe0: 0,149,246 !important;
 }
 
 body {
@@ -17,16 +27,74 @@ svg {
     fill: rgb(255, 255, 255) !important;
 }
 
-/* from black to white (TODO: class of 'SAVED' NullStat) */
+/* from black to white */
 
-.s4Iyt, .felixSpriteProfileChannelNullStat, .coreSpriteTaggedNull {
+.s4Iyt, .felixSpriteProfileChannelNullState, .coreSpriteSaveNull, .coreSpriteTaggedNull, .coreSpriteLoggedOutWordmark, .coreSpriteKeyhole {
     filter: brightness(0) invert(1);
     -webkit-filter: brightness(0) invert(1);
 }
 
 /* from white to black 
 
-. {
+.className {
     filter: grayscale(1) invert(1);
     -webkit-filter: grayscale(1) invert(1);
 }*/
+
+/* Removing color of "Log in with Facebook" on Login page */
+.KPnG0 {
+    color: inherit !important;
+}
+
+/* Removing the forgotten shadow by Instagram in Profile menu */
+.TOh1s {
+    display: none;
+}
+
+/*
+    Instgram basic colors
+
+.sDN5V {
+    --i1d: 38,38,38;
+    --edc: 199,199,199;
+    --f75: 38,38,38;
+    --fe0: 0,55,107;
+    --d87: 255,255,255;
+    --b3f: 250,250,250;
+    --bb2: 239,239,239;
+    --f23: 255,255,255;
+    --b38: 219,219,219;
+    --b6a: 219,219,219;
+    --ca6: 219,219,219;
+    --cdd: 38,38,38;
+    --e22: 199,199,199;
+    --e62: 245,251,255;
+    --b2f: 88,195,34;
+    --c8c: 168,168,168;
+    --ce3: 239,239,239;
+    --jd9: 0,0,0;
+    --j64: 54,54,54;
+    --a97: 243,243,243;
+    --d20: 38,38,38;
+}
+
+.ekjoN, .sDN5V {
+    --f52: 142,142,142;
+    --h1d: 255,255,255;
+    --de5: 255,255,255;
+    --d69: 0,149,246;
+    --b86: 88,195,34;
+    --i30: 237,73,86;
+    --d62: 255,255,255;
+    --a72: 255,255,255;
+    --ie3: 142,142,142;
+    --c37: 237,73,86;
+    --f24: 0,149,246;
+    --jbb: 53,121,234;
+    --eca: 255,255,255;
+    --jb7: 0,0,0;
+    --fa7: 224,241,255;
+    --ba8: 168,168,168;
+    --eac: 237,73,86;
+}
+*/
