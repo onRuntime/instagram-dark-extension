@@ -8,7 +8,7 @@ Instagram dark extension is an extension which aims to change the theme of the [
 
 ## Support
 
-<a href="https://www.patreon.com/onruntime">
+<a href="https://www.patreon.com/onruntime" target="_blank">
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
 
