@@ -1,6 +1,6 @@
 // Var
 var state
-var storage = getBrowser().storage.local
+var storage = getBrowser().storage.sync
 
 // Element wrapper
 wrapper = document.createElement('div')
@@ -26,7 +26,9 @@ button.onclick = function () {
 document.body.appendChild(wrapper)
 wrapper.appendChild(button)
 
-getStorage().get(['state']);
+getStorage().get(['state'], function (result) {
+    console.log('[storage] state loaded: ' + result.state)
+});
 
 initState()
 // Storage
@@ -57,7 +59,9 @@ function getState() {
 
 function setState(r) {
     state = r
-    getStorage().set({ 'state': r });
+    getStorage().set({ 'state': r }, function () {
+        console.log('[storage] state saved: ' + r);
+    });
 }
 
 // Toggle
