@@ -31,6 +31,11 @@ svg {
     fill: rgb(255, 255, 255) !important;
 }
 
+/* red heart color */
+svg[aria-label="Unlike"] {
+    fill: rgb(237, 73, 86) !important;
+}
+
 /* from black to white */
 
 .s4Iyt, .felixSpriteProfileChannelNullState, .coreSpriteSaveNull,
@@ -40,7 +45,8 @@ svg {
 .glyphsSpriteApp_twitter__outline__24__grey_9, .glyphsSpriteApp_whatsapp__outline__24__grey_9,
 .glyphsSpriteMail__outline__24__grey_9, .glyphsSpriteLink__outline__24__grey_9, .glyphsSpriteLocation__outline__24__grey_9,
 .glyphsSpriteCall__outline__24__grey_9, .glyphsSpriteFacebook_circle__outline__24__grey_9, .glyphsSpriteFriend_Follow,
-.coreSpriteDropdownArrowGrey9 {
+.coreSpriteDropdownArrowGrey9, .glyphsSpriteCamera__outline__24__grey_9, .glyphsSpriteLock__outline__24__grey_9,
+.glyphsSpriteCircle_add__outline__24__grey_9 {
     filter: brightness(0) invert(1);
     -webkit-filter: brightness(0) invert(1);
 }
@@ -53,6 +59,11 @@ svg {
 }*/
 
 /* Specific classes */
+
+/* Wrapper inverting colors */
+.wrapper img {
+    filter: invert(100%);
+}
 
 /* Removing color of "Log in with Facebook" on Login page */
 .KPnG0 {
