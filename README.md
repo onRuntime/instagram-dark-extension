@@ -8,7 +8,9 @@ Instagram dark extension is an extension which aims to change the theme of the [
 
 ## Usage
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5rN5d45Rt7Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/5rN5d45Rt7Y" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
 
 ## Support
 
