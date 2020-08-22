@@ -6,6 +6,10 @@ Instagram dark extension is an extension which aims to change the theme of the [
 
 * [Instagram Dark Extension for Firefox](https://addons.mozilla.org/fr/firefox/addon/instagram-dark)
 
+## Usage
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5rN5d45Rt7Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Support
 
 <a href="https://www.patreon.com/onruntime">
