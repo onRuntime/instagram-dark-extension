@@ -26,11 +26,10 @@ button.onclick = function () {
 document.body.appendChild(wrapper)
 wrapper.appendChild(button)
 
-getStorage().get(['state'], function (result) {
-    console.log('[storage] state loaded: ' + result.state)
-});
+// Initialization
 
 initState()
+
 // Storage
 
 function getStorage() {
@@ -40,6 +39,9 @@ function getStorage() {
 // State
 
 function initState() {
+    getStorage().get(['state'], function (result) {
+        console.log('[storage] state loaded: ' + result.state)
+    });
     getStorage().get(['state'], function (result) {
         if (result.state == undefined) {
             setState(true)
@@ -79,7 +81,7 @@ function toggle() {
 }
 
 function toggleCss() {
-    if(document.getElementById(css.id)) {
+    if (document.getElementById(css.id)) {
         document.getElementById(css.id).remove()
     } else {
         (document.head || document.documentElement).appendChild(css);

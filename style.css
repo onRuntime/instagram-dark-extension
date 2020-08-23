@@ -32,7 +32,7 @@ svg {
 }
 
 /* red heart color */
-svg[aria-label="Unlike"] {
+svg[fill="#ed4956"] {
     fill: rgb(237, 73, 86) !important;
 }
 
