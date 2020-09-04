@@ -4,6 +4,7 @@ Instagram dark extension is an extension which aims to change the theme of the [
 
 ## Installation
 
+* [Instagram Dark Extension for Chrome](https://chrome.google.com/webstore/detail/instagram-dark-theme/hhpaefgagkcciebgfdmoljlebdmpfcfb)
 * [Instagram Dark Extension for Firefox](https://addons.mozilla.org/fr/firefox/addon/instagram-dark)
 
 ## Usage
@@ -22,7 +23,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/onRuntime/instagram-dark-extension/blob/master/LICENSE)
 
 ## Links
 
