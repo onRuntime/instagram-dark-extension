@@ -61,7 +61,7 @@ svg[fill="#ed4956"] {
 /* Specific classes */
 
 /* Wrapper inverting colors */
-.wrapper img {
+.instagram-dark-wrapper img {
     filter: invert(100%);
 }
 
@@ -73,6 +73,11 @@ svg[fill="#ed4956"] {
 /* Removing the forgotten shadow by Instagram in Profile menu */
 .TOh1s {
     display: none;
+}
+
+/* Color of link from links of hashtags, profiles */
+._7kTyW {
+    color: #fff !important;
 }
 
 /*

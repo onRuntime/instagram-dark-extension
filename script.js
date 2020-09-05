@@ -1,43 +1,66 @@
 // Var
 var state
 var storage = getBrowser().storage.sync
-
-// Element wrapper
-wrapper = document.createElement('div')
-wrapper.classList.add('wrapper')
-
-// Element button
-button = document.createElement('img')
-button.src = getBrowser().extension.getURL('dark.png')
-
-// Element css
 var css = document.createElement('link');
-css.rel = 'stylesheet'
-css.type = 'text/css'
-css.id = 'dark-theme-stylesheet'
-css.href = getBrowser().extension.getURL('style.css');
+var hostname = window.location.hostname
+var pathname = window.location.pathname
+var unautorizedHostname = ['help.instagram.com', 'about.instagram.com']
+var unautorizedPathname = ['/about', '/developer', '/legal']
+var authorization = true
 
-// Button Events
-button.onclick = function () {
-    toggle()
+// Script init
+init()
+
+function init() {
+    // Authorized pathname/hostname
+    unautorizedHostname.forEach(element => {
+        if (element == hostname) {
+            authorization = false
+        }
+    })
+    unautorizedPathname.forEach(element => {
+        if (pathname.includes(element)) {
+            authorization = false
+        }
+    })
+    if(authorization == true) build()
 }
 
-// Elements injection
-document.body.appendChild(wrapper)
-wrapper.appendChild(button)
+function build() {
+    // Element wrapper
+    wrapper = document.createElement('div')
+    wrapper.classList.add('instagram-dark-wrapper')
 
-// Initialization
+    // Element button
+    button = document.createElement('img')
+    button.src = getBrowser().extension.getURL('dark.png')
 
-initState()
+    // Element css
+    css.rel = 'stylesheet'
+    css.type = 'text/css'
+    css.id = 'dark-theme-stylesheet'
+    css.href = getBrowser().extension.getURL('style.css');
+
+    // Button Events
+    button.onclick = function () {
+        toggle()
+    }
+
+    // Elements injection
+    document.body.appendChild(wrapper)
+    wrapper.appendChild(button)
+
+    // Initialization
+    initState()
+}
+
 
 // Storage
-
 function getStorage() {
     return storage
 }
 
 // State
-
 function initState() {
     getStorage().get(['state'], function (result) {
         console.log('[storage] state loaded: ' + result.state)
@@ -67,7 +90,6 @@ function setState(r) {
 }
 
 // Toggle
-
 function toggle() {
     if (getState() == false) {
         toggleCss()
@@ -89,7 +111,6 @@ function toggleCss() {
 }
 
 // Browser Detection
-
 function getBrowser() {
     if (typeof chrome !== 'undefined') {
         if (typeof browser !== 'undefined') {
