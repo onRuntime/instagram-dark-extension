@@ -1,11 +1,12 @@
 // Var
+const storage = getBrowser().storage.sync
+const hostname = window.location.hostname
+const pathname = window.location.pathname
+
 var state
-var storage = getBrowser().storage.sync
 var css = document.createElement('link');
-var hostname = window.location.hostname
-var pathname = window.location.pathname
 var unautorizedHostname = ['help.instagram.com', 'about.instagram.com']
-var unautorizedPathname = ['/about', '/developer', '/legal']
+var unautorizedPathname = ['/about', '/developer', '/legal', '/static']
 var authorization = true
 
 // Script init

@@ -7,20 +7,17 @@
     --b3f: 0, 0, 0 !important;
     --d87: 0, 0, 0 !important;
     --f23: 0, 0, 0 !important;
-
     /* White */
     --i1d: 255, 255, 255 !important;
     --f75: 255, 255, 255 !important;
-
     /* Grey */
     --ce3: 38, 38, 38 !important;
     --b38: 38, 38, 38 !important;
     --b6a: 38, 38, 38 !important;
     --ca6: 38, 38, 38 !important;
     --bb2: 38, 38, 38 !important;
-
     /* Others */
-    --fe0: 0,149,246 !important;
+    --fe0: 0, 149, 246 !important;
 }
 
 body {
@@ -32,21 +29,14 @@ svg {
 }
 
 /* red heart color */
+
 svg[fill="#ed4956"] {
     fill: rgb(237, 73, 86) !important;
 }
 
 /* from black to white */
 
-.s4Iyt, .felixSpriteProfileChannelNullState, .coreSpriteSaveNull,
-.coreSpriteTaggedNull, .coreSpriteLoggedOutWordmark, .coreSpriteKeyhole,
-.glyphsSpriteDirect__outline__24__grey_9, .glyphsSpriteFacebook_circle__outline__24__grey_9,
-.glyphsSpriteApp_instagram__outline__24__grey_9, .glyphsSpriteApp_messenger__outline__24__grey_9, 
-.glyphsSpriteApp_twitter__outline__24__grey_9, .glyphsSpriteApp_whatsapp__outline__24__grey_9,
-.glyphsSpriteMail__outline__24__grey_9, .glyphsSpriteLink__outline__24__grey_9, .glyphsSpriteLocation__outline__24__grey_9,
-.glyphsSpriteCall__outline__24__grey_9, .glyphsSpriteFacebook_circle__outline__24__grey_9, .glyphsSpriteFriend_Follow,
-.coreSpriteDropdownArrowGrey9, .glyphsSpriteCamera__outline__24__grey_9, .glyphsSpriteLock__outline__24__grey_9,
-.glyphsSpriteCircle_add__outline__24__grey_9 {
+.s4Iyt, .felixSpriteProfileChannelNullState, .coreSpriteSaveNull, .coreSpriteTaggedNull, .coreSpriteLoggedOutWordmark, .coreSpriteKeyhole, .glyphsSpriteDirect__outline__24__grey_9, .glyphsSpriteFacebook_circle__outline__24__grey_9, .glyphsSpriteApp_instagram__outline__24__grey_9, .glyphsSpriteApp_messenger__outline__24__grey_9, .glyphsSpriteApp_twitter__outline__24__grey_9, .glyphsSpriteApp_whatsapp__outline__24__grey_9, .glyphsSpriteMail__outline__24__grey_9, .glyphsSpriteLink__outline__24__grey_9, .glyphsSpriteLocation__outline__24__grey_9, .glyphsSpriteCall__outline__24__grey_9, .glyphsSpriteFacebook_circle__outline__24__grey_9, .glyphsSpriteFriend_Follow, .coreSpriteDropdownArrowGrey9, .glyphsSpriteCamera__outline__24__grey_9, .glyphsSpriteLock__outline__24__grey_9, .glyphsSpriteCircle_add__outline__24__grey_9 {
     filter: brightness(0) invert(1);
     -webkit-filter: brightness(0) invert(1);
 }
@@ -61,23 +51,33 @@ svg[fill="#ed4956"] {
 /* Specific classes */
 
 /* Wrapper inverting colors */
+
 .instagram-dark-wrapper img {
     filter: invert(100%);
 }
 
 /* Removing color of "Log in with Facebook" on Login page */
+
 .KPnG0 {
     color: inherit !important;
 }
 
 /* Removing the forgotten shadow by Instagram in Profile menu */
+
 .TOh1s {
     display: none;
 }
 
 /* Color of link from links of hashtags, profiles */
+
 ._7kTyW {
     color: #fff !important;
+}
+
+/* Bacground color of sound icon */
+
+.IhCmn {
+    background-color: #262626 !important;
 }
 
 /*
