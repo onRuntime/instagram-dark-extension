@@ -55,7 +55,6 @@ function build() {
     initState()
 }
 
-
 // Storage
 function getStorage() {
     return storage
