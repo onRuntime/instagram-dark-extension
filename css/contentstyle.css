@@ -1,11 +1,12 @@
 .instagram-dark-wrapper {
     z-index: 9999;
     position: fixed;
-    bottom: 2px;
-    left: 2px;
 }
 
 .instagram-dark-wrapper img {
+    position: absolute;
     cursor: pointer;
     height: 20px;
+    bottom: 2px;
+    left: 2px;
 }

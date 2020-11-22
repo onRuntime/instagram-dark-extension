@@ -50,12 +50,6 @@ svg[fill="#ed4956"] {
 
 /* Specific classes */
 
-/* Wrapper inverting colors */
-
-.instagram-dark-wrapper img {
-    filter: invert(100%);
-}
-
 /* Removing color of "Log in with Facebook" on Login page */
 
 .KPnG0 {

@@ -34,13 +34,12 @@ function build() {
 
     // Element button
     button = document.createElement('img')
-    button.src = getBrowser().extension.getURL('./img/dark.png')
 
     // Element css
     css.rel = 'stylesheet'
     css.type = 'text/css'
     css.id = 'dark-theme-stylesheet'
-    css.href = getBrowser().extension.getURL('./css/style.css');
+    css.href = getBrowser().extension.getURL('css/style.css')
 
     // Button Events
     button.onclick = function () {
@@ -49,7 +48,6 @@ function build() {
 
     // Elements injection
     document.body.appendChild(wrapper)
-    wrapper.appendChild(button)
 
     // Initialization
     initState()
@@ -69,12 +67,16 @@ function initState() {
         if (result.state == undefined) {
             setState(true)
             toggleCss()
+            button.src = getBrowser().extension.getURL('img/sun-fill.svg')
         } else {
             setState(result.state)
+            button.src = getBrowser().extension.getURL('img/moon-fill.svg')
             if (getState() == true) {
                 toggleCss()
+                button.src = getBrowser().extension.getURL('img/sun-fill.svg')
             }
         }
+        wrapper.appendChild(button)
     });
 }
 
@@ -91,23 +93,26 @@ function setState(r) {
 
 // Toggle
 function toggle() {
-    if (getState() == false) {
-        toggleCss()
-        setState(true)
-    } else if (getState() == true) {
-        toggleCss()
-        setState(false)
-    } else {
-        initState()
+    switch (getState()) {
+        case true:
+            toggleCss()
+            setState(false)
+            button.src = getBrowser().extension.getURL('img/moon-fill.svg')
+            break;
+        case false:
+            toggleCss()
+            setState(true)
+            button.src = getBrowser().extension.getURL('img/sun-fill.svg')
+            break;
+        default:
+            initState()
+            break;
     }
 }
 
 function toggleCss() {
-    if (document.getElementById(css.id)) {
-        document.getElementById(css.id).remove()
-    } else {
-        (document.head || document.documentElement).appendChild(css);
-    }
+    if (document.getElementById(css.id)) document.getElementById(css.id).remove();
+    else (document.head || document.documentElement).appendChild(css);
 }
 
 // Browser Detection

@@ -21,7 +21,8 @@
     ],
     "web_accessible_resources": [
         "css/style.css",
-        "img/dark.png"
+        "img/moon-fill.svg",
+        "img/sun-fill.svg"
     ],
     "permissions": [
         "storage"
