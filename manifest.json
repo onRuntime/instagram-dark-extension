@@ -3,16 +3,16 @@
     "version": "1.1.4",
     "description": "Dark Theme for Instagram",
     "icons": {
-        "128": "icon.png"
+        "128": "img/icon.png"
     },
     "manifest_version": 2,
     "content_scripts": [
         {
             "js": [
-                "script.js"
+                "js/script.js"
             ],
             "css": [
-                "contentstyle.css"
+                "css/contentstyle.css"
             ],
             "matches": [
                 "*://*.instagram.com/*"
@@ -20,8 +20,8 @@
         }
     ],
     "web_accessible_resources": [
-        "style.css",
-        "dark.png"
+        "css/style.css",
+        "img/dark.png"
     ],
     "permissions": [
         "storage"

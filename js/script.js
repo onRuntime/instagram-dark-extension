@@ -24,7 +24,7 @@ function init() {
             authorization = false
         }
     })
-    if(authorization == true) build()
+    if (authorization == true) build()
 }
 
 function build() {
@@ -34,13 +34,13 @@ function build() {
 
     // Element button
     button = document.createElement('img')
-    button.src = getBrowser().extension.getURL('dark.png')
+    button.src = getBrowser().extension.getURL('./img/dark.png')
 
     // Element css
     css.rel = 'stylesheet'
     css.type = 'text/css'
     css.id = 'dark-theme-stylesheet'
-    css.href = getBrowser().extension.getURL('style.css');
+    css.href = getBrowser().extension.getURL('./css/style.css');
 
     // Button Events
     button.onclick = function () {
