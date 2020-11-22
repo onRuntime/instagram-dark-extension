@@ -1,5 +1,5 @@
 // Var
-const storage = getBrowser().storage.sync
+const storage = getBrowser().storage.local
 const hostname = window.location.hostname
 const pathname = window.location.pathname
 
