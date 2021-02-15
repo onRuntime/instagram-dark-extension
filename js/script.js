@@ -5,8 +5,8 @@ const pathname = window.location.pathname
 
 var state
 var css = document.createElement('link');
-var unautorizedHostname = ['help.instagram.com', 'about.instagram.com']
-var unautorizedPathname = ['/about', '/developer', '/legal', '/static']
+var unautorizedHostname = ['help.instagram.com', 'about.instagram.com', 'i.instagram.com', 'graph.instagram.com']
+var unautorizedPathname = ['/about', '/api', '/developer', '/legal', '/static', '/graphql']
 var authorization = true
 
 // Script init
