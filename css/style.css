@@ -70,6 +70,18 @@ svg[fill="#ed4956"] {
     background-color: #262626 !important;
 }
 
+/* Background color of the bottom left box in /accounts */
+
+.wpHm3.Igw0E.IwRSH.eGOV_._4EzTm.O1flK.fm1AK {
+    background:#000 !important;
+}
+
+/* Color of the card title in /session/login_activity */
+
+.leaflet-popup.leaflet-zoom-animated ._7UhW9.xLCgt.qyrsm.KV-D4.uL8Hv {
+    color: #000 !important;
+}
+
 /*
     Instgram basic colors
 
