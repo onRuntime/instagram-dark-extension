@@ -9,7 +9,7 @@
     "content_scripts": [
         {
             "js": [
-                "js/script.js"
+                "js/app.js"
             ],
             "css": [
                 "css/contentstyle.css"

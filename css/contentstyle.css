@@ -1,6 +1,70 @@
 .instagram-dark-wrapper {
     z-index: 9999;
     position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.instagram-dark-wrapper>* {
+    pointer-events: initial;
+}
+
+.instagram-dark-wrapper .congrats {
+    position: absolute;
+    padding: 20px 20px;
+    width: 100%;
+    bottom: 5%;
+    right: calc((100% - 935px) / 2);
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 10px;
+    max-width: 293px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #262626;
+    animation-name: fadeInUp;
+    animation-fill-mode: both;
+    animation-duration: 1s;
+    opacity: 1;
+}
+
+.instagram-dark-wrapper .congrats.unactive {
+    animation-name: fadeOutDown;
+    animation-fill-mode: both;
+    animation-duration: 1s;
+    opacity: 0;
+}
+
+.instagram-dark-wrapper .congrats a {
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+}
+
+.instagram-dark-wrapper .congrats a:hover {
+    text-decoration: underline;
+}
+
+.instagram-dark-wrapper .congrats b {
+    font-weight: 600;
+}
+
+.instagram-dark-wrapper .congrats .congrats-follow {
+    outline: none;
+    border: none;
+    background-color: #0095f6;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 5px 9px;
 }
 
 .instagram-dark-wrapper img {
@@ -9,4 +73,30 @@
     height: 20px;
     bottom: 2px;
     left: 2px;
+}
+
+/* Animations */
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0)
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0)
+    }
+}
+
+@keyframes fadeOutDown {
+    0% {
+        opacity: 1
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0)
+    }
 }
