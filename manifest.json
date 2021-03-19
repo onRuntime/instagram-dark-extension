@@ -1,6 +1,6 @@
 {
     "name": "Instagram Dark Theme",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "description": "Dark Theme for Instagram",
     "icons": {
         "128": "img/icon.png"
@@ -9,7 +9,7 @@
     "content_scripts": [
         {
             "js": [
-                "js/script.js"
+                "js/app.js"
             ],
             "css": [
                 "css/contentstyle.css"
