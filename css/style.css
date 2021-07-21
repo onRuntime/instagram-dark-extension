@@ -82,6 +82,13 @@ svg[fill="#ed4956"] {
     color: #000 !important;
 }
 
+/* Color of IGTV Upload in /tv/upload */
+
+
+form .hSy4z, form .Ouy_P, form .t3CGe {
+    color: #fff;
+}
+
 /*
     Instgram basic colors
 
