@@ -1,0 +1,11 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# production
+/dist
+
+# misc
+.DS_Store
+*.pem
