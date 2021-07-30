@@ -1,4 +1,6 @@
-.instagram-dark-wrapper {
+/* Main */
+/* wrapper */
+#instagram-dark-wrapper {
     z-index: 9999;
     position: fixed;
     width: 100%;
@@ -8,11 +10,12 @@
     pointer-events: none;
 }
 
-.instagram-dark-wrapper>* {
+#instagram-dark-wrapper>* {
     pointer-events: initial;
 }
 
-.instagram-dark-wrapper .congrats {
+/* congrats popup */
+#instagram-dark-wrapper .congrats {
     position: absolute;
     padding: 20px 20px;
     width: 100%;
@@ -34,28 +37,28 @@
     opacity: 1;
 }
 
-.instagram-dark-wrapper .congrats.unactive {
+#instagram-dark-wrapper .congrats.unactive {
     animation-name: fadeOutDown;
     animation-fill-mode: both;
     animation-duration: 1s;
     opacity: 0;
 }
 
-.instagram-dark-wrapper .congrats a {
+#instagram-dark-wrapper .congrats a {
     font-weight: 600;
     color: #fff;
     text-decoration: none;
 }
 
-.instagram-dark-wrapper .congrats a:hover {
+#instagram-dark-wrapper .congrats a:hover {
     text-decoration: underline;
 }
 
-.instagram-dark-wrapper .congrats b {
+#instagram-dark-wrapper .congrats b {
     font-weight: 600;
 }
 
-.instagram-dark-wrapper .congrats .congrats-follow {
+#instagram-dark-wrapper .congrats .congrats-follow {
     outline: none;
     border: none;
     background-color: #0095f6;
@@ -67,19 +70,20 @@
     padding: 5px 9px;
 }
 
-#dark-theme-toggle-button {
+/* toggle dark button */
+#instagram-dark-toggle-button {
 	display: flex;
     flex-direction: row;
 	align-items: center;
 	height: 37px;
-	background: none;
 	border: none;
 	text-align: left;
 	padding-left: 16px;
 	cursor: pointer;
+    user-select: none;
 }
 
-#dark-theme-toggle-button img {
+#instagram-dark-toggle-button img {
 	width: 16px;
 	height: 16px;
 	padding-right: 12px;
@@ -109,4 +113,37 @@
         -webkit-transform: translate3d(0, 100%, 0);
         transform: translate3d(0, 100%, 0)
     }
+}
+
+/* Redesign */
+
+/* stories box */
+.zGtbP.IPQK5.VideM {
+	border: none;
+	border-bottom: none;
+	background: none;
+	padding: 0;
+	left: -3px;
+}
+
+/* story circle */
+.RR-M-.QN629 {
+    transition: all .2s;
+}
+.RR-M-.QN629:hover {
+	transform: scale(1.05);
+}
+
+/* nav bar search background */
+.pbgfb.Di7vw {
+	border-radius: 10px;
+    border: none;
+    background: rgba(var(--bb2,239,239,239),1);
+}
+
+/* search background when searching */
+.XTCLo.x3qfX {
+	border-radius: 10px;
+    border: none;
+    background: rgba(var(--bb2,239,239,239),1);
 }
