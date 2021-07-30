@@ -10,6 +10,7 @@ let wrapper;
 // dark theme button in option list.
 let darkThemeButton;
 let darkThemeButtonIcon;
+let darkThemeButtonText;
 // congrats
 let congratsPopup;
 
@@ -111,23 +112,25 @@ const initElements = () => {
   css = document.createElement("link");
   css.rel = "stylesheet";
   css.type = "text/css";
-  css.id = "dark-theme-stylesheet";
+  css.id = "instagram-dark-stylesheet";
   css.href = SOURCES.STYLESHEET;
 
   // Build wrapper element
   wrapper = document.createElement("div");
-  wrapper.classList.add("instagram-dark-wrapper");
+  wrapper.id = "instagram-dark-wrapper";
+  document.body.appendChild(wrapper);
 
   // Build dark theme button element
   darkThemeButton = document.createElement("div");
-  darkThemeButton.id = "dark-theme-toggle-button";
+  darkThemeButton.id = "instagram-dark-toggle-button";
+  darkThemeButton.classList.add("-qQT3");
 
   darkThemeButtonIcon = document.createElement("img");
   //   darkThemeButtonIcon.src = state ? SOURCES.MOON_ICON : SOURCES.SUN_ICON;
   darkThemeButton.appendChild(darkThemeButtonIcon);
 
-  let darkThemeButtonText = document.createElement("span");
-  darkThemeButtonText.innerText = "Dark mode";
+  darkThemeButtonText = document.createElement("span");
+  darkThemeButtonText.innerText = "Dark theme";
 
   darkThemeButton.appendChild(darkThemeButtonText);
   darkThemeButton.addEventListener("click", toggleDarkTheme);
@@ -166,12 +169,15 @@ const initState = () => {
       setState(true);
       toggleStylesheet();
       darkThemeButtonIcon.src = SOURCES.SUN_ICON;
+      darkThemeButtonText.innerText = "Light theme";
     } else {
       setState(result.state);
       darkThemeButtonIcon.src = SOURCES.MOON_ICON;
+      darkThemeButtonText.innerText = "Dark theme";
       if (getState() == true) {
         toggleStylesheet();
         darkThemeButtonIcon.src = SOURCES.SUN_ICON;
+        darkThemeButtonText.innerText = "Light theme";
       }
     }
   });
@@ -190,11 +196,13 @@ const toggleDarkTheme = () => {
       toggleStylesheet();
       setState(false);
       darkThemeButtonIcon.src = SOURCES.MOON_ICON;
+      darkThemeButtonText.innerText = "Dark theme";
       break;
     case false:
       toggleStylesheet();
       setState(true);
       darkThemeButtonIcon.src = SOURCES.SUN_ICON;
+      darkThemeButtonText.innerText = "Light theme";
       break;
     default:
       initState();
@@ -272,14 +280,14 @@ const initFirstInstall = async () => {
             // make popup disappear
             setTimeout(
               () =>
-                document.querySelector(".congrats").classList.add("unactive"),
-              3000
+                wrapper.querySelector(".congrats").classList.add("unactive"),
+              5 * 1000
             );
           } catch (err) {
             console.error("Error:", err);
           }
         }
-      }, 3000);
+      }, 10);
   });
 };
 
