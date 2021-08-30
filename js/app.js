@@ -217,7 +217,6 @@ const addDarkThemeButton = () => {
   // insert our button above the "Settings" button.
   if (optionsMenu)
     optionsMenu.insertBefore(darkThemeButton, optionsMenu.children[2]);
-  console.log("option menu:", optionsMenu);
 };
 
 // First install
