@@ -11,8 +11,9 @@ let wrapper;
 let darkThemeButton;
 let darkThemeButtonIcon;
 let darkThemeButtonText;
-// congrats
+// popups
 let congratsPopup;
+let appearancePopup;
 
 // Variables
 // state of dark theme [true: dark | false: light].
@@ -126,7 +127,6 @@ const initElements = () => {
   darkThemeButton.classList.add("-qQT3");
 
   darkThemeButtonIcon = document.createElement("img");
-  //   darkThemeButtonIcon.src = state ? SOURCES.MOON_ICON : SOURCES.SUN_ICON;
   darkThemeButton.appendChild(darkThemeButtonIcon);
 
   darkThemeButtonText = document.createElement("span");
@@ -144,9 +144,36 @@ const initElements = () => {
   // Build congrats popup element
   congratsPopup = document.createElement("div");
   congratsPopup.classList.add("congrats");
-  congratsPopup.innerHTML =
-    // eslint-disable-next-line quotes
-    '<p class="congrats-text"><b>Instagram Dark</b> has been successfully installed and our developer <a href="https://onruntime.com/">onRuntime</a> has been added to your followings! Thanks for downloading it!</p>';
+  congratsPopup.innerHTML = `<p class="congrats-text">
+      <b>Instagram Dark</b> has been successfully installed and our developer <a href="https://onruntime.com/">onRuntime</a> has been added to your followings! Thanks for downloading it!
+    </p>`;
+
+  // Build appearance popup element
+  appearancePopup = document.createElement("div");
+  appearancePopup.classList.add("appearance");
+  appearancePopup.innerHTML = `<div class="appearance-container">
+      <div class="appearance-header">
+        <h1 class="appearance-header-title">Customize your view</h1>
+        <p class="appearance-header-description">Manage your colors and background. These settings affect all the Instagram accounts on this browser.</p>
+      </div>
+      <div class="appearance-categories">
+        <div class="appearance-category">
+          <h2 class="appearance-category-title">Background</h2>
+          <div class="appearance-category-selector">
+            <div class="appearance-category-selector-card">Dark</div>
+            <div class="appearance-category-selector-card">Light</div>
+          </div>
+        </div>
+        <div class="appearance-category">
+          <h2 class="appearance-category-title">Font Family</h2>
+          <select name="font-family" id="font-family">
+            <option value="poppins">Poppins</option>
+          </select>
+        </div>
+      </div>
+    </div>`;
+
+  wrapper.appendChild(appearancePopup);
 };
 
 // Dark Theme State
