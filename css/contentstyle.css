@@ -1,4 +1,5 @@
 /* Main */
+
 /* wrapper */
 #instagram-dark-wrapper {
     z-index: 9999;
@@ -116,6 +117,32 @@
 }
 
 /* Redesign */
+
+/* scrollbar */
+html,
+body {
+    scrollbar-color: rgba(var(--f52,142,142,142),1) rgba(var(--b6a,219,219,219),1);
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    /* for vertical scrollbars */
+    height: 7px;
+    /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(var(--b6a,219,219,219),1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(var(--f52,142,142,142),1);
+    height: 10px;
+}
+
+::-webkit-scrollbar-track-piece {
+    height: 30px;
+}
 
 /* stories box */
 .zGtbP.IPQK5.VideM {
