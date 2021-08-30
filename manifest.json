@@ -24,6 +24,7 @@
         "img/*"
     ],
     "permissions": [
-        "storage"
+        "storage",
+        "*://fonts.googleapis.com/"
     ]
 }
