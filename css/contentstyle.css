@@ -267,10 +267,10 @@ body {
 }
 
 /* nav bar search background */
-.pbgfb.Di7vw {
-	border-radius: 10px;
-    border: none;
-    background: rgba(var(--bb2,239,239,239),1);
+.pbgfb {
+	border-radius: 10px !important;
+    border: none !important;
+    background: rgba(var(--bb2,239,239,239),1) !important;
 }
 
 /* search background when searching */
