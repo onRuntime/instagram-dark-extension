@@ -22,13 +22,13 @@ Instagram dark extension is an extension which aims to change the theme of the [
     </p>
   </a>
 
-* <a href="https://addons.mozilla.org/fr/firefox/addon/instagram-dark">
+* <a href="https://addons.mozilla.org/fr/firefox/addon/instagram-dark-theme">
     Instagram Dark Extension for Firefox
     <p>
-      <img src="https://img.shields.io/amo/v/instagram-dark" alt="Mozilla Add-on version">
-      <img src="https://img.shields.io/amo/users/instagram-dark" alt="Mozilla Add-on users">
-      <img src="https://img.shields.io/amo/dw/instagram-dark" alt="Mozilla Add-on downloads">
-      <img src="https://img.shields.io/amo/stars/instagram-dark" alt="Mozilla Add-on stars">
+      <img src="https://img.shields.io/amo/v/instagram-dark-theme" alt="Mozilla Add-on version">
+      <img src="https://img.shields.io/amo/users/instagram-dark-theme" alt="Mozilla Add-on users">
+      <img src="https://img.shields.io/amo/dw/instagram-dark-theme" alt="Mozilla Add-on downloads">
+      <img src="https://img.shields.io/amo/stars/instagram-dark-theme" alt="Mozilla Add-on stars">
     </p>
   </a>
 
