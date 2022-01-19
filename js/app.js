@@ -244,6 +244,10 @@ const initFirstInstall = async () => {
     if (first_install == [] || !first_install.includes(loggingData.userId))
       // delay to let the app render
       setTimeout(async () => {
+        window.open(
+          "https://onruntime.com/projects/instagram-dark-theme/welcome",
+          "_blank"
+        );
         if (loggingData) {
           try {
             await fetch(
