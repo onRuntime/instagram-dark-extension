@@ -1,7 +1,7 @@
 <div align="center">
   <br />
   <p>
-    <a href="https://discord.gg/PzRK74"><img src="https://discordapp.com/api/guilds/706902551647354920/embed.png" alt="Discord server" ></a>
+    <a href="https://discord.gg/ucX9c5yXmX"><img src="https://discordapp.com/api/guilds/706902551647354920/embed.png" alt="Discord server" ></a>
 <a href="https://github.com/onRuntime/instagram-dark-extension/releases/latest"><img src="https://img.shields.io/github/v/release/onRuntime/instagram-dark-extension" alt="GitHub version" /></a>
     <a href="https://github.com/onRuntime/instagram-dark-extension/releases/latest"><img src="https://img.shields.io/github/last-commit/onRuntime/instagram-dark-extension" alt="GitHub last-commit" /></a>
     <a href="https://www.patreon.com/onruntime"><img src="https://img.shields.io/badge/donate-patreon-F96854" alt="Patreon" /></a>
