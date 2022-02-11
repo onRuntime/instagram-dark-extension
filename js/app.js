@@ -282,8 +282,6 @@ const addCustomLinks = () => {
     navLinks.prepend(gitHubLink);
     navLinks.prepend(discordLink);
     navLinks.prepend(onRuntimeLink);
-
-    console.log("navlink active", navLinks.active);
   }
   clearInterval(customLinksInterval);
   return;
