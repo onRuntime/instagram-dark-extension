@@ -155,7 +155,7 @@ const initElements = () => {
   });
 
   // Build footer element
-  const buildCustomLink = (name, href) => {
+  const buildCustomLink = (name, href, targetBlank = true) => {
     const item = document.createElement("li");
     item.classList.add("K5OFK");
 
@@ -163,7 +163,7 @@ const initElements = () => {
     link.classList.add("l93RR");
     link.innerText = name;
     link.href = href;
-    link.target = "_blank";
+    if (targetBlank) link.target = "_blank";
     item.appendChild(link);
     return item;
   };
@@ -175,14 +175,12 @@ const initElements = () => {
     "https://linkedin.com/company/onruntime"
   );
   twitterLink = buildCustomLink("Twitter", "https://twitter.com/onRuntime");
-  instagramLink = buildCustomLink(
-    "Instagram",
-    "https://instagram.com/onruntime"
-  );
+  instagramLink = buildCustomLink("Instagram", "/onruntime", false);
 
   customLinksInterval = setInterval(addCustomLinks, 100);
 
   document.addEventListener("click", () => {
+    clearInterval(customLinksInterval);
     customLinksInterval = setInterval(addCustomLinks, 100);
   });
 
@@ -282,8 +280,8 @@ const addCustomLinks = () => {
     navLinks.prepend(gitHubLink);
     navLinks.prepend(discordLink);
     navLinks.prepend(onRuntimeLink);
+    clearInterval(customLinksInterval);
   }
-  clearInterval(customLinksInterval);
   return;
 };
 
