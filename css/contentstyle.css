@@ -258,6 +258,11 @@ body {
 	left: -3px;
 }
 
+/* nav brand logo */
+.MWDvN ._7Nzh3 {
+    display: none;
+}
+
 /* story circle */
 .RR-M-.QN629 {
     transition: all .2s;
@@ -278,4 +283,14 @@ body {
 	border-radius: 10px;
     border: none;
     background: rgba(var(--bb2,239,239,239),1);
+}
+
+/* sidebar nav copyright */
+.SkY6J .DINPA {
+    display: none;
+}
+
+/* footer copyright */
+footer[role="contentinfo"] .qF0y9.Igw0E.IwRSH.eGOV_._4EzTm._5VUwz {
+    display: none;
 }
