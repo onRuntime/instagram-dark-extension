@@ -5,12 +5,25 @@
 // Elements
 // stylescheet with instagram style.
 let css;
+
 // wrapper for things like popups etc.
 let wrapper;
+
 // dark theme button in option list.
 let darkThemeButton;
 let darkThemeButtonIcon;
 let darkThemeButtonText;
+
+// custom links in footer
+let discordLink;
+let linkedInLink;
+let gitHubLink;
+let twitterLink;
+let instagramLink;
+let onRuntimeLink;
+
+let customLinksInterval;
+
 // congrats
 let congratsPopup;
 
@@ -141,6 +154,38 @@ const initElements = () => {
     }
   });
 
+  // Build footer element
+  const buildCustomLink = (name, href) => {
+    const item = document.createElement("li");
+    item.classList.add("K5OFK");
+
+    const link = document.createElement("a");
+    link.classList.add("l93RR");
+    link.innerText = name;
+    link.href = href;
+    link.target = "_blank";
+    item.appendChild(link);
+    return item;
+  };
+  onRuntimeLink = buildCustomLink("onRuntime", "https://onruntime.com/");
+  discordLink = buildCustomLink("Discord", "https://discord.gg/ucX9c5yXmX");
+  gitHubLink = buildCustomLink("GitHub", "https://github.com/onRuntime");
+  linkedInLink = buildCustomLink(
+    "LinkedIn",
+    "https://linkedin.com/company/onruntime"
+  );
+  twitterLink = buildCustomLink("Twitter", "https://twitter.com/onRuntime");
+  instagramLink = buildCustomLink(
+    "Instagram",
+    "https://instagram.com/onruntime"
+  );
+
+  customLinksInterval = setInterval(addCustomLinks, 100);
+
+  document.addEventListener("click", () => {
+    customLinksInterval = setInterval(addCustomLinks, 100);
+  });
+
   // Build congrats popup element
   congratsPopup = document.createElement("div");
   congratsPopup.classList.add("congrats");
@@ -217,6 +262,31 @@ const addDarkThemeButton = () => {
   // insert our button above the "Settings" button.
   if (optionsMenu)
     optionsMenu.insertBefore(darkThemeButton, optionsMenu.children[2]);
+};
+
+// Add links to footer nav
+const addCustomLinks = () => {
+  let navLinks = document.querySelector("nav .ixdEe._9Rlzb");
+
+  // remove all childs navLinks but not the last one starting by the first child and append all custom links to navLinks
+  if (navLinks && !navLinks.active) {
+    // set navLinks attribute active to true
+    navLinks.active = true;
+
+    while (navLinks.children.length > 1) {
+      navLinks.removeChild(navLinks.children[0]);
+    }
+    navLinks.prepend(instagramLink);
+    navLinks.prepend(twitterLink);
+    navLinks.prepend(linkedInLink);
+    navLinks.prepend(gitHubLink);
+    navLinks.prepend(discordLink);
+    navLinks.prepend(onRuntimeLink);
+
+    console.log("navlink active", navLinks.active);
+  }
+  clearInterval(customLinksInterval);
+  return;
 };
 
 // First install
