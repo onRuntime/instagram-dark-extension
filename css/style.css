@@ -90,6 +90,16 @@ form .hSy4z, form .Ouy_P, form .t3CGe {
     color: #fff;
 }
 
+/* Fix white background and color /settings/help */
+article.PVkFi [data-bloks-name="bk.components.Flexbox"] * {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+article.PVkFi [data-bloks-name="bk.components.Flexbox"] [data-bloks-name="ig.components.Icon"] {
+    background: #fff !important;
+}
+
 /*
     Instgram basic colors
 
