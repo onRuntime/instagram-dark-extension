@@ -238,10 +238,11 @@ const toggleStylesheet = () => {
     document.getElementById(css.id).remove();
     document.head.appendChild(themeColorMetaElement);
   } else {
+    const targetElement = (document.head || document.documentElement);
     if (themeColorMetaElement) themeColorMetaElement.setAttribute("content", "#000000");
 
-    (document.head || document.documentElement).appendChild(css);
-    (document.head || document.documentElement).appendChild(themeColorMetaElement);
+    targetElement.appendChild(css);
+    targetElement.appendChild(themeColorMetaElement);
   }
 };
 
