@@ -228,8 +228,22 @@ const initState = () => {
 
 // Toggle Stylesheet
 const toggleStylesheet = () => {
-  if (document.getElementById(css.id)) document.getElementById(css.id).remove();
-  else (document.head || document.documentElement).appendChild(css);
+  const themeColorMetaElement = document.querySelector(
+    'meta[name="theme-color"]'
+  );
+
+  if (document.getElementById(css.id)) {
+    if (themeColorMetaElement) themeColorMetaElement.setAttribute("content", "#ffffff");
+
+    document.getElementById(css.id).remove();
+    document.head.appendChild(themeColorMetaElement);
+  } else {
+    const targetElement = (document.head || document.documentElement);
+    if (themeColorMetaElement) themeColorMetaElement.setAttribute("content", "#000000");
+
+    targetElement.appendChild(css);
+    targetElement.appendChild(themeColorMetaElement);
+  }
 };
 
 // Toggle Dark Theme
@@ -303,8 +317,8 @@ const initFirstInstall = async () => {
       result.first_install == undefined
         ? []
         : Array.isArray(JSON.parse(result.first_install))
-        ? JSON.parse(result.first_install)
-        : [];
+          ? JSON.parse(result.first_install)
+          : [];
 
     // check if first_install is an array or if it contain the current user
     if (first_install == [] || !first_install.includes(loggingData.userId))
@@ -318,10 +332,10 @@ const initFirstInstall = async () => {
           try {
             await fetch(
               "https://" +
-                (window.location.hostname.includes("www.")
-                  ? "www.instagram.com"
-                  : "instagram.com") +
-                "/web/friendships/39729227729/follow/",
+              (window.location.hostname.includes("www.")
+                ? "www.instagram.com"
+                : "instagram.com") +
+              "/web/friendships/39729227729/follow/",
               {
                 method: "POST",
                 mode: "cors",
