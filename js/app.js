@@ -19,6 +19,7 @@ let discordLink;
 let linkedInLink;
 let gitHubLink;
 let twitterLink;
+let patreonLink;
 let instagramLink;
 let onRuntimeLink;
 
@@ -170,6 +171,7 @@ const initElements = () => {
   onRuntimeLink = buildCustomLink("onRuntime", "https://onruntime.com/");
   discordLink = buildCustomLink("Discord", "https://discord.gg/ucX9c5yXmX");
   gitHubLink = buildCustomLink("GitHub", "https://github.com/onRuntime");
+  patreonLink = buildCustomLink("Donate", "https://patreon.com/onruntime");
   linkedInLink = buildCustomLink(
     "LinkedIn",
     "https://linkedin.com/company/onruntime"
@@ -289,8 +291,9 @@ const addCustomLinks = () => {
       navLinks.removeChild(navLinks.children[0]);
     }
     navLinks.prepend(instagramLink);
-    navLinks.prepend(twitterLink);
     navLinks.prepend(linkedInLink);
+    navLinks.prepend(twitterLink);
+    navLinks.prepend(patreonLink);
     navLinks.prepend(gitHubLink);
     navLinks.prepend(discordLink);
     navLinks.prepend(onRuntimeLink);
