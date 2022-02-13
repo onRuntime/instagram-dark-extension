@@ -87,6 +87,7 @@ const isAuthorized = () => {
     "about.instagram.com",
     "i.instagram.com",
     "graph.instagram.com",
+    "accountscenter.instagram.com",
   ];
 
   // unauthorized pathnames.
