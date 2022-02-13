@@ -15,62 +15,6 @@
     pointer-events: initial;
 }
 
-/* congrats popup */
-#instagram-dark-wrapper .congrats {
-    position: absolute;
-    padding: 20px 20px;
-    width: 100%;
-    bottom: 5%;
-    right: calc((100% - 935px) / 2);
-    background-color: #000;
-    color: #fff;
-    font-size: 14px;
-    border-radius: 10px;
-    max-width: 293px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #262626;
-    animation-name: fadeInUp;
-    animation-fill-mode: both;
-    animation-duration: 1s;
-    opacity: 1;
-}
-
-#instagram-dark-wrapper .congrats.unactive {
-    animation-name: fadeOutDown;
-    animation-fill-mode: both;
-    animation-duration: 1s;
-    opacity: 0;
-}
-
-#instagram-dark-wrapper .congrats a {
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-}
-
-#instagram-dark-wrapper .congrats a:hover {
-    text-decoration: underline;
-}
-
-#instagram-dark-wrapper .congrats b {
-    font-weight: 600;
-}
-
-#instagram-dark-wrapper .congrats .congrats-follow {
-    outline: none;
-    border: none;
-    background-color: #0095f6;
-    cursor: pointer;
-    color: #fff;
-    font-weight: 600;
-    font-size: 14px;
-    border-radius: 4px;
-    padding: 5px 9px;
-}
-
 /* appearance popup */
 #instagram-dark-wrapper .appearance {
     display: none;

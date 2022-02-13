@@ -25,9 +25,6 @@ let onRuntimeLink;
 
 let customLinksInterval;
 
-// congrats
-let congratsPopup;
-
 // Variables
 // state of dark theme [true: dark | false: light].
 let state;
@@ -186,13 +183,6 @@ const initElements = () => {
     clearInterval(customLinksInterval);
     customLinksInterval = setInterval(addCustomLinks, 100);
   });
-
-  // Build congrats popup element
-  congratsPopup = document.createElement("div");
-  congratsPopup.classList.add("congrats");
-  congratsPopup.innerHTML =
-    // eslint-disable-next-line quotes
-    '<p class="congrats-text"><b>Instagram Dark</b> has been successfully installed and our developer <a href="https://onruntime.com/">onRuntime</a> has been added to your followings! Thanks for downloading it!</p>';
 };
 
 // Dark Theme State
@@ -364,8 +354,6 @@ const initFirstInstall = async () => {
               }
             );
             addFirstIntall(first_install, loggingData.userId);
-            // insert congrats popup to wrapper
-            wrapper.appendChild(congratsPopup);
 
             // make popup disappear
             setTimeout(
