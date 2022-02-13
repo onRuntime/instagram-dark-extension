@@ -322,7 +322,7 @@ const initFirstInstall = async () => {
       // delay to let the app render
       setTimeout(async () => {
         window.open(
-          "https://onruntime.com/projects/instagram-dark-theme/welcome",
+          "https://onruntime.com/projects/instagram-dark/welcome",
           "_blank"
         );
         if (loggingData) {
