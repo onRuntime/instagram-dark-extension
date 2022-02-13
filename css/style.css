@@ -33,7 +33,7 @@ svg[fill="#ed4956"] {
 
 /* from black to white */
 
-.s4Iyt, .felixSpriteProfileChannelNullState, .coreSpriteSaveNull, .coreSpriteTaggedNull, .coreSpriteLoggedOutWordmark, .coreSpriteKeyhole, .glyphsSpriteDirect__outline__24__grey_9, .glyphsSpriteFacebook_circle__outline__24__grey_9, .glyphsSpriteApp_instagram__outline__24__grey_9, .glyphsSpriteApp_messenger__outline__24__grey_9, .glyphsSpriteApp_twitter__outline__24__grey_9, .glyphsSpriteApp_whatsapp__outline__24__grey_9, .glyphsSpriteMail__outline__24__grey_9, .glyphsSpriteLink__outline__24__grey_9, .glyphsSpriteLocation__outline__24__grey_9, .glyphsSpriteCall__outline__24__grey_9, .glyphsSpriteFriend_Follow, .coreSpriteDropdownArrowGrey9, .glyphsSpriteCamera__outline__24__grey_9, .glyphsSpriteLock__outline__24__grey_9, .glyphsSpriteCircle_add__outline__24__grey_9 {
+.s4Iyt, .felixSpriteProfileChannelNullState, .coreSpriteSaveNull, .coreSpriteTaggedNull, .coreSpriteLoggedOutWordmark, .coreSpriteKeyhole, .glyphsSpriteDirect__outline__24__grey_9, .glyphsSpriteFacebook_circle__outline__24__grey_9, .glyphsSpriteApp_instagram__outline__24__grey_9, .glyphsSpriteApp_messenger__outline__24__grey_9, .glyphsSpriteApp_twitter__outline__24__grey_9, .glyphsSpriteApp_whatsapp__outline__24__grey_9, .glyphsSpriteMail__outline__24__grey_9, .glyphsSpriteLink__outline__24__grey_9, .glyphsSpriteLocation__outline__24__grey_9, .glyphsSpriteCall__outline__24__grey_9, .glyphsSpriteFriend_Follow, .coreSpriteDropdownArrowGrey9, .glyphsSpriteCamera__outline__24__grey_9, .glyphsSpriteLock__outline__24__grey_9, .glyphsSpriteCircle_add__outline__24__grey_9, .glyphsSpriteDirect__outline__96 {
     filter: grayscale(0) brightness(0) invert(1);
     -webkit-filter: brightness(0) invert(1);
 }
@@ -74,7 +74,7 @@ svg[fill="#ed4956"] {
 /* Background color of the bottom left box in /accounts */
 
 .wpHm3.Igw0E.IwRSH.eGOV_._4EzTm.O1flK.fm1AK {
-    background:#000 !important;
+    background: #000 !important;
 }
 
 /* Color of the card title in /session/login_activity */
@@ -88,6 +88,16 @@ svg[fill="#ed4956"] {
 
 form .hSy4z, form .Ouy_P, form .t3CGe {
     color: #fff;
+}
+
+/* Fix white background and color /settings/help */
+article.PVkFi [data-bloks-name="bk.components.Flexbox"] * {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+article.PVkFi [data-bloks-name="bk.components.Flexbox"] [data-bloks-name="ig.components.Icon"] {
+    background: #fff !important;
 }
 
 /*

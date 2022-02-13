@@ -5,14 +5,25 @@
 // Elements
 // stylescheet with instagram style.
 let css;
+
 // wrapper for things like popups etc.
 let wrapper;
+
 // dark theme button in option list.
 let darkThemeButton;
 let darkThemeButtonIcon;
 let darkThemeButtonText;
-// congrats
-let congratsPopup;
+
+// custom links in footer
+let discordLink;
+let linkedInLink;
+let gitHubLink;
+let twitterLink;
+let patreonLink;
+let instagramLink;
+let onRuntimeLink;
+
+let customLinksInterval;
 
 // Variables
 // state of dark theme [true: dark | false: light].
@@ -73,6 +84,7 @@ const isAuthorized = () => {
     "about.instagram.com",
     "i.instagram.com",
     "graph.instagram.com",
+    "accountscenter.instagram.com",
   ];
 
   // unauthorized pathnames.
@@ -141,12 +153,36 @@ const initElements = () => {
     }
   });
 
-  // Build congrats popup element
-  congratsPopup = document.createElement("div");
-  congratsPopup.classList.add("congrats");
-  congratsPopup.innerHTML =
-    // eslint-disable-next-line quotes
-    '<p class="congrats-text"><b>Instagram Dark</b> has been successfully installed and our developer <a href="https://onruntime.com/">onRuntime</a> has been added to your followings! Thanks for downloading it!</p>';
+  // Build footer element
+  const buildCustomLink = (name, href, targetBlank = true) => {
+    const item = document.createElement("li");
+    item.classList.add("K5OFK");
+
+    const link = document.createElement("a");
+    link.classList.add("l93RR");
+    link.innerText = name;
+    link.href = href;
+    if (targetBlank) link.target = "_blank";
+    item.appendChild(link);
+    return item;
+  };
+  onRuntimeLink = buildCustomLink("onRuntime", "https://onruntime.com/");
+  discordLink = buildCustomLink("Discord", "https://discord.gg/ucX9c5yXmX");
+  gitHubLink = buildCustomLink("GitHub", "https://github.com/onRuntime");
+  patreonLink = buildCustomLink("Donate", "https://patreon.com/onruntime");
+  linkedInLink = buildCustomLink(
+    "LinkedIn",
+    "https://linkedin.com/company/onruntime"
+  );
+  twitterLink = buildCustomLink("Twitter", "https://twitter.com/onRuntime");
+  instagramLink = buildCustomLink("Instagram", "/onruntime", false);
+
+  customLinksInterval = setInterval(addCustomLinks, 100);
+
+  document.addEventListener("click", () => {
+    clearInterval(customLinksInterval);
+    customLinksInterval = setInterval(addCustomLinks, 100);
+  });
 };
 
 // Dark Theme State
@@ -185,8 +221,25 @@ const initState = () => {
 
 // Toggle Stylesheet
 const toggleStylesheet = () => {
-  if (document.getElementById(css.id)) document.getElementById(css.id).remove();
-  else (document.head || document.documentElement).appendChild(css);
+  const themeColorMetaElement = document.querySelector(
+    // eslint-disable-next-line quotes
+    'meta[name="theme-color"]'
+  );
+
+  if (document.getElementById(css.id)) {
+    if (themeColorMetaElement)
+      themeColorMetaElement.setAttribute("content", "#ffffff");
+
+    document.getElementById(css.id).remove();
+    document.head.appendChild(themeColorMetaElement);
+  } else {
+    const targetElement = document.head || document.documentElement;
+    if (themeColorMetaElement)
+      themeColorMetaElement.setAttribute("content", "#000000");
+
+    targetElement.appendChild(css);
+    targetElement.appendChild(themeColorMetaElement);
+  }
 };
 
 // Toggle Dark Theme
@@ -219,6 +272,30 @@ const addDarkThemeButton = () => {
     optionsMenu.insertBefore(darkThemeButton, optionsMenu.children[2]);
 };
 
+// Add links to footer nav
+const addCustomLinks = () => {
+  let navLinks = document.querySelector("nav .ixdEe._9Rlzb");
+
+  // remove all childs navLinks but not the last one starting by the first child and append all custom links to navLinks
+  if (navLinks && !navLinks.active) {
+    // set navLinks attribute active to true
+    navLinks.active = true;
+
+    while (navLinks.children.length > 1) {
+      navLinks.removeChild(navLinks.children[0]);
+    }
+    navLinks.prepend(instagramLink);
+    navLinks.prepend(linkedInLink);
+    navLinks.prepend(twitterLink);
+    navLinks.prepend(gitHubLink);
+    navLinks.prepend(discordLink);
+    navLinks.prepend(patreonLink);
+    navLinks.prepend(onRuntimeLink);
+    clearInterval(customLinksInterval);
+  }
+  return;
+};
+
 // First install
 
 const initFirstInstall = async () => {
@@ -244,6 +321,10 @@ const initFirstInstall = async () => {
     if (first_install == [] || !first_install.includes(loggingData.userId))
       // delay to let the app render
       setTimeout(async () => {
+        window.open(
+          "https://onruntime.com/projects/instagram-dark/welcome",
+          "_blank"
+        );
         if (loggingData) {
           try {
             await fetch(
@@ -273,8 +354,6 @@ const initFirstInstall = async () => {
               }
             );
             addFirstIntall(first_install, loggingData.userId);
-            // insert congrats popup to wrapper
-            wrapper.appendChild(congratsPopup);
 
             // make popup disappear
             setTimeout(
