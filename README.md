@@ -8,14 +8,14 @@
   </p>
 </div>
 
-# Instagram Dark Extension
+# Dark Theme for Instagram™
 
-Instagram dark extension is an extension which aims to change the theme of the [Instagram](https://instagram.com) website, and make it a dark theme like the iOS app when the system is in dark mode.
+Dark Theme for Instagram™ is an extension which aims to change the theme of the [Instagram](https://instagram.com) website, and make it a dark theme like the iOS app when the system is in dark mode.
 
 ## Installation
 
 * <a href="https://chrome.google.com/webstore/detail/instagram-dark-theme/hhpaefgagkcciebgfdmoljlebdmpfcfb">
-    Instagram Dark Extension for Chrome 
+    Dark Theme for Instagram™ for Chrome 
     <p>
       <img src="https://img.shields.io/chrome-web-store/v/hhpaefgagkcciebgfdmoljlebdmpfcfb" alt="Chrome Web Store version">
       <img src="https://img.shields.io/chrome-web-store/users/hhpaefgagkcciebgfdmoljlebdmpfcfb" alt="Chrome Web Store users">
@@ -23,7 +23,7 @@ Instagram dark extension is an extension which aims to change the theme of the [
   </a>
 
 * <a href="https://addons.mozilla.org/fr/firefox/addon/instagram-dark-theme">
-    Instagram Dark Extension for Firefox
+    Dark Theme for Instagram™ for Firefox
     <p>
       <img src="https://img.shields.io/amo/v/instagram-dark-theme" alt="Mozilla Add-on version">
       <img src="https://img.shields.io/amo/users/instagram-dark-theme" alt="Mozilla Add-on users">
@@ -33,7 +33,7 @@ Instagram dark extension is an extension which aims to change the theme of the [
   </a>
 
 * <a href="https://microsoftedge.microsoft.com/addons/detail/instagram-dark-theme/dhpoocfaphdchlaabhnacbffnacpagoj">
-    Instagram Dark Extension for Edge
+    Dark Theme for Instagram™ for Edge
     <p>
       <img src="https://img.shields.io/badge/dynamic/json?label=edge%20add-on&prefix=v&query=%24.version&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fdhpoocfaphdchlaabhnacbffnacpagoj" alt="Edge Add-on version">
       <img src="https://img.shields.io/badge/dynamic/json?label=users&query=%24.activeInstallCount&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fdhpoocfaphdchlaabhnacbffnacpagoj" alt="Edge Add-on users">
@@ -60,5 +60,5 @@ Please make sure to update tests as appropriate.
 
 ## Links
 
-* [Instagram Dark Extension GitHub](https://github.com/onRuntime/instagram-dark-extension)
+* [Dark Theme for Instagram™ GitHub](https://github.com/onRuntime/instagram-dark-extension)
 * [onRuntime Studio](https://onruntime.com)
