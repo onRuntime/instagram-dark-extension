@@ -256,3 +256,41 @@ body {
 footer[role="contentinfo"] .qF0y9.Igw0E.IwRSH.eGOV_._4EzTm._5VUwz {
     display: none;
 }
+
+/* Modal */
+.modal-dark-theme{
+    display: block;
+    position: fixed;
+    z-index: 30;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    
+}
+.modal-dark-theme .modal-dark-theme-box{
+    background-color: #fff;
+    border-radius: 21px;
+    margin: 25% auto;
+    padding: 1rem max(3vw, 2rem);
+    border: 3px solid var(--rouge);
+    width: clamp(300px, 90%, 700px);
+    position: relative;
+    border-radius: 15px;
+    box-shadow:  0px 0px 18px 10px #d0d0d0;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+}
+.modal-dark-theme .modal-dark-theme-box .modal-box-themes{
+    display: flex;
+    flex-flow: column nowrap;
+    border-radius: 15px;
+    width: calc(20% - 1rem);
+    padding: .7rem;
+    text-align: center;
+    background-color: whitesmoke;
+    box-shadow: 0px 0px 6px 4px #d0d0d0;
+}

@@ -33,7 +33,15 @@ let customLinksInterval;
 // Variables
 // state of dark theme [true: dark | false: light].
 let state;
+// theme in local storage
+let theme;
 
+// list theme
+let themeList = {
+  white: { title: 'White', css:'white.css', img:'img/white'},
+  red: { title: 'Red', css:'red.css', img:'img/red'},
+  blue: { title: 'Blue', css:'blue.css', img:'img/blue'},
+}
 // Browser Detection
 const getBrowser = () => {
   if (typeof chrome !== "undefined") {
@@ -134,6 +142,13 @@ const initElements = () => {
   css.id = "instagram-dark-stylesheet";
   css.href = SOURCES.STYLESHEET;
 
+  // Theme css
+  cssTheme = document.createElement("link");
+  cssTheme.rel = "stylesheet";
+  cssTheme.type = "text/css";
+  // TODO update from here
+  cssTheme.id = "instagram-dark-stylesheet";
+  cssTheme.href = SOURCES.STYLESHEET;
   // Build wrapper element
   wrapper = document.createElement("div");
   wrapper.id = "instagram-dark-wrapper";
@@ -170,6 +185,7 @@ const initElements = () => {
   templateThemeButtonText = document.createElement("span");
   templateThemeButtonText.innerText = "Template theme";
   templateThemeButton.appendChild(templateThemeButtonText);
+  templateThemeButton.addEventListener("click", toggleTemplateTheme);
   document.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG" && e.target.classList.contains("_6q-tv")) {
       // delay adding the button to allow the menu to render
@@ -220,11 +236,22 @@ const setState = (r) => {
     console.log("[storage] state saved: " + r)
   );
 };
+// Theme in storage
+// get the state variable.
+const getTheme = () => theme;
 
+// set the Theme in variable and in localstorage.
+const setTheme = (r) => {
+  theme = r;
+  getStorage().set({ theme: r }, () =>
+    console.log("[storage] Theme saved: " + r)
+  );
+};
+//TODO add theme in init !
 // init the state or initialize it in local storage.
 const initState = () => {
-  getStorage().get(["state"], (result) => {
-    console.log("[storage] state loaded: " + result.state);
+  getStorage().get( (result) => {
+    console.info(["[storage] state loaded: " + result.state, "[storage] theme loaded: " + result.theme]);
     if (result.state == undefined) {
       setState(true);
       toggleStylesheet();
@@ -269,6 +296,7 @@ const toggleStylesheet = () => {
   }
 };
 
+// TODO for return to the previous theme (localstorage)
 // Toggle Dark Theme
 const toggleDarkTheme = () => {
   switch (getState()) {
@@ -291,6 +319,69 @@ const toggleDarkTheme = () => {
       break;
   }
 };
+
+
+// toggle modal
+const toggleTemplateTheme = () => {
+    console.log('Show modal');
+    const backgroundModal = document.createElement("div");
+    backgroundModal.classList.add("modal-dark-theme");
+    document.body.appendChild(backgroundModal);
+
+    const modalBox = document.createElement("div");
+    modalBox.classList.add("modal-dark-theme-box");
+    backgroundModal.appendChild(modalBox);
+
+    for (const theme in themeList) {
+      itemBox(modalBox, themeList[theme]);
+    }
+    // close modal
+    //target for close
+    // closeModal.addEventListener('click', ()=>{
+    //   modalBox.remove();
+    // })
+    window.addEventListener('click', (event) =>{
+        if (event.target == backgroundModal) {
+            backgroundModal.remove();
+        }
+    })
+}
+
+// item box template theme
+const itemBox = (divTarget, theme) =>{
+  const box = document.createElement('div');
+  box.classList.add("modal-box-themes");
+  console.log(theme);
+  // const imgItemBox = document.createElement('img');
+  // imgItemBox.src = getBrowser().extension.getURL(theme.img)
+  const titleItemBox = document.createElement('p');
+  titleItemBox.innerText = theme.title;
+  box.appendChild(titleItemBox);
+  divTarget.appendChild(box);
+  box.addEventListener('click', (e)=>{
+    e.preventDefault();
+    itemBoxSelectTemplate(theme.title);
+  });
+}
+// Select template theme
+const itemBoxSelectTemplate = (e) => {
+  console.log(e);
+    switch(e){
+      case 'White':
+
+        setTheme('white');
+        break;
+      case 'Red':
+        setTheme('red');
+        break;
+      case 'Blue':
+        setTheme('blue');
+        break;
+      case 'default':
+        setTheme('white');
+        break;
+    }
+}
 
 // Add dark theme button in option menu.
 const addDarkThemeButton = () => {
