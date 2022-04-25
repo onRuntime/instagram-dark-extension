@@ -14,6 +14,11 @@ let darkThemeButton;
 let darkThemeButtonIcon;
 let darkThemeButtonText;
 
+// template theme button in option list
+let templateThemeButton;
+let templateThemeButtonIcon;
+let templateThemeButtonText;
+
 // custom links in footer
 let discordLink;
 let linkedInLink;
@@ -116,6 +121,8 @@ const SOURCES = {
   STYLESHEET: getBrowser().extension.getURL("css/style.css"),
   MOON_ICON: getBrowser().extension.getURL("img/moon-fill.svg"),
   SUN_ICON: getBrowser().extension.getURL("img/sun-fill.svg"),
+  PALETTE_ICON_W: getBrowser().extension.getURL("img/palette-fill-light.svg"),
+  PALETTE_ICON_D: getBrowser().extension.getURL("img/palette-fill-dark.svg"),
 };
 
 // Elements
@@ -150,6 +157,23 @@ const initElements = () => {
     if (e.target.tagName === "IMG" && e.target.classList.contains("_6q-tv")) {
       // delay adding the button to allow the menu to render
       setTimeout(addDarkThemeButton, 10);
+    }
+  });
+
+  // Build template theme button element
+  templateThemeButton = document.createElement("div");
+  templateThemeButton.id = "template-theme-modal-button";
+  templateThemeButton.classList.add('-qQT3');
+  templateThemeButtonIcon = document.createElement("img");
+  templateThemeButton.appendChild(templateThemeButtonIcon);
+
+  templateThemeButtonText = document.createElement("span");
+  templateThemeButtonText.innerText = "Template theme";
+  templateThemeButton.appendChild(templateThemeButtonText);
+  document.addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG" && e.target.classList.contains("_6q-tv")) {
+      // delay adding the button to allow the menu to render
+      setTimeout(addTemplateThemeButton, 15);
     }
   });
 
@@ -206,14 +230,17 @@ const initState = () => {
       toggleStylesheet();
       darkThemeButtonIcon.src = SOURCES.SUN_ICON;
       darkThemeButtonText.innerText = "Light theme";
+      templateThemeButtonIcon.src = SOURCES.PALETTE_ICON_W;
     } else {
       setState(result.state);
       darkThemeButtonIcon.src = SOURCES.MOON_ICON;
       darkThemeButtonText.innerText = "Dark theme";
+      templateThemeButtonIcon.src = SOURCES.PALETTE_ICON_D;
       if (getState() == true) {
         toggleStylesheet();
         darkThemeButtonIcon.src = SOURCES.SUN_ICON;
         darkThemeButtonText.innerText = "Light theme";
+        templateThemeButtonIcon.src = SOURCES.PALETTE_ICON_W;
       }
     }
   });
@@ -250,12 +277,14 @@ const toggleDarkTheme = () => {
       setState(false);
       darkThemeButtonIcon.src = SOURCES.MOON_ICON;
       darkThemeButtonText.innerText = "Dark theme";
+      templateThemeButtonIcon.src = SOURCES.PALETTE_ICON_D;
       break;
     case false:
       toggleStylesheet();
       setState(true);
       darkThemeButtonIcon.src = SOURCES.SUN_ICON;
       darkThemeButtonText.innerText = "Light theme";
+      templateThemeButtonIcon.src = SOURCES.PALETTE_ICON_W;
       break;
     default:
       initState();
@@ -270,6 +299,14 @@ const addDarkThemeButton = () => {
   // insert our button above the "Settings" button.
   if (optionsMenu)
     optionsMenu.insertBefore(darkThemeButton, optionsMenu.children[2]);
+};
+// Add template theme button in option menu.
+const addTemplateThemeButton = () => {
+  let optionsMenu = document.querySelector("._01UL2");
+
+  // insert our button above the "Settings" button.
+  if (optionsMenu)
+    optionsMenu.insertBefore(templateThemeButton, optionsMenu.children[3]);
 };
 
 // Add links to footer nav

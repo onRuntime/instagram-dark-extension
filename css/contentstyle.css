@@ -116,6 +116,24 @@
 	height: 16px;
 	padding-right: 12px;
 }
+/* toggle dark button */
+#template-theme-modal-button {
+	display: flex;
+    flex-direction: row;
+	align-items: center;
+	height: 37px;
+	border: none;
+	text-align: left;
+	padding-left: 16px;
+	cursor: pointer;
+    user-select: none;
+}
+
+#template-theme-modal-button img {
+	width: 16px;
+	height: 16px;
+	padding-right: 12px;
+}
 
 /* Animations */
 
