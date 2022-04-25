@@ -127,6 +127,7 @@ const isAuthorized = () => {
 // Sources (images, assets)
 const SOURCES = {
   STYLESHEET: getBrowser().extension.getURL("css/style.css"),
+  STYLETHEME: getBrowser().extension.getURL("css/theme.css"),
   MOON_ICON: getBrowser().extension.getURL("img/moon-fill.svg"),
   SUN_ICON: getBrowser().extension.getURL("img/sun-fill.svg"),
   PALETTE_ICON_W: getBrowser().extension.getURL("img/palette-fill-light.svg"),
@@ -147,8 +148,8 @@ const initElements = () => {
   cssTheme.rel = "stylesheet";
   cssTheme.type = "text/css";
   // TODO update from here
-  cssTheme.id = "instagram-dark-stylesheet";
-  cssTheme.href = SOURCES.STYLESHEET;
+  cssTheme.id = "instagram-theme-stylesheet";
+  cssTheme.href = SOURCES.STYLETHEME;
   // Build wrapper element
   wrapper = document.createElement("div");
   wrapper.id = "instagram-dark-wrapper";
