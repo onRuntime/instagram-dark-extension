@@ -32,20 +32,15 @@ let onRuntimeLink;
 let customLinksInterval;
 
 // Variables
-// state of dark theme [true: dark | false: light].
-let state;
 // theme in local storage
 let theme;
 
-// list of class names from IG
-let listClassIg = ['--b3f','--d87','--f23','--i1d','--f75','--ce3','--b38','--b6a','--ca6','--bb2','--fe0'];
-
 // list theme
 let themeList = {
-  white: { title: 'White', css:'white-theme', img:'img/white'},
-  red: { title: 'Red', css: 'STYLETHEMERED', img:'img/red'},
-  blue: { title: 'Blue', css:'STYLETHEMEBLUE', img:'img/blue'},
-  black: { title: 'Black', css: 'STYLETHEMEBLACK', img:'img/black'},
+  white: { title: 'white', css:'white', img:'img/white' , iconColor: 'dark'},
+  red: { title: 'red', css: 'STYLETHEMERED', img:'img/red' , iconColor: 'light'},
+  blue: { title: 'blue', css:'STYLETHEMEBLUE', img:'img/blue' , iconColor: 'light'},
+  black: { title: 'black', css: 'STYLETHEMEBLACK', img:'img/black' , iconColor: 'light'},
 }
 // Browser Detection
 const getBrowser = () => {
@@ -131,9 +126,9 @@ const isAuthorized = () => {
 
 // Sources (images, assets)
 const SOURCES = {
-  STYLESHEET: getBrowser().extension.getURL("css/style.css"),
   STYLETHEMERED: getBrowser().extension.getURL("css/theme-red.css"),
   STYLETHEMEBLUE: getBrowser().extension.getURL("css/theme-blue.css"),
+  STYLETHEMEBLACK: getBrowser().extension.getURL("css/theme-black.css"),
   MOON_ICON: getBrowser().extension.getURL("img/moon-fill.svg"),
   SUN_ICON: getBrowser().extension.getURL("img/sun-fill.svg"),
   PALETTE_ICON_W: getBrowser().extension.getURL("img/palette-fill-light.svg"),
@@ -142,13 +137,6 @@ const SOURCES = {
 
 // Elements
 const initElements = () => {
-  // Build css element
-  css = document.createElement("link");
-  css.rel = "stylesheet";
-  css.type = "text/css";
-  css.id = "instagram-dark-stylesheet";
-  css.href = SOURCES.STYLESHEET;
-
   // Theme css
   cssTheme = document.createElement("link");
   cssTheme.rel = "stylesheet";
@@ -159,27 +147,6 @@ const initElements = () => {
   wrapper = document.createElement("div");
   wrapper.id = "instagram-dark-wrapper";
   document.body.appendChild(wrapper);
-
-  // Build dark theme button element
-  darkThemeButton = document.createElement("div");
-  darkThemeButton.id = "instagram-dark-toggle-button";
-  darkThemeButton.classList.add("-qQT3");
-
-  darkThemeButtonIcon = document.createElement("img");
-  //   darkThemeButtonIcon.src = state ? SOURCES.MOON_ICON : SOURCES.SUN_ICON;
-  darkThemeButton.appendChild(darkThemeButtonIcon);
-
-  darkThemeButtonText = document.createElement("span");
-  darkThemeButtonText.innerText = "Dark theme";
-
-  darkThemeButton.appendChild(darkThemeButtonText);
-  darkThemeButton.addEventListener("click", toggleDarkTheme);
-  document.addEventListener("click", (e) => {
-    if (e.target.tagName === "IMG" && e.target.classList.contains("_6q-tv")) {
-      // delay adding the button to allow the menu to render
-      setTimeout(addDarkThemeButton, 10);
-    }
-  });
 
   // Build template theme button element
   templateThemeButton = document.createElement("div");
@@ -195,7 +162,7 @@ const initElements = () => {
   document.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG" && e.target.classList.contains("_6q-tv")) {
       // delay adding the button to allow the menu to render
-      setTimeout(addTemplateThemeButton, 15);
+      setTimeout(addTemplateThemeButton, 10);
     }
   });
 
@@ -231,19 +198,8 @@ const initElements = () => {
   });
 };
 
-// Dark Theme State
-// get the state variable.
-const getState = () => state;
-
-// set the state in variable and in localstorage.
-const setState = (r) => {
-  state = r;
-  getStorage().set({ state: r }, () =>
-    console.log("[storage] state saved: " + r)
-  );
-};
 // Theme in storage
-// get the state variable.
+// get the theme variable.
 const getTheme = () => theme;
 
 // set the Theme in variable and in localstorage.
@@ -253,77 +209,13 @@ const setTheme = (r) => {
     console.log("[storage] Theme saved: " + r)
   );
 };
-//TODO add theme in init !
+
 // init the state or initialize it in local storage.
 const initState = () => {
   getStorage().get( (result) => {
-    console.info(["[storage] state loaded: " + result.state, "[storage] theme loaded: " + result.theme]);
-    if (result.state == undefined) {
-      setState(true);
-      toggleStylesheet();
-      darkThemeButtonIcon.src = SOURCES.SUN_ICON;
-      darkThemeButtonText.innerText = "Light theme";
-      templateThemeButtonIcon.src = SOURCES.PALETTE_ICON_W;
-    } else {
-      setState(result.state);
-      darkThemeButtonIcon.src = SOURCES.MOON_ICON;
-      darkThemeButtonText.innerText = "Dark theme";
-      templateThemeButtonIcon.src = SOURCES.PALETTE_ICON_D;
-      if (getState() == true) {
-        toggleStylesheet();
-        darkThemeButtonIcon.src = SOURCES.SUN_ICON;
-        darkThemeButtonText.innerText = "Light theme";
-        templateThemeButtonIcon.src = SOURCES.PALETTE_ICON_W;
-      }
-    }
+    console.info("[storage] theme loaded: " + result.theme);
+    itemBoxSelectTemplate(themeList[result.theme]);
   });
-};
-
-// Toggle Stylesheet
-const toggleStylesheet = () => {
-  const themeColorMetaElement = document.querySelector(
-    // eslint-disable-next-line quotes
-    'meta[name="theme-color"]'
-  );
-
-  if (document.getElementById(css.id)) {
-    if (themeColorMetaElement)
-      themeColorMetaElement.setAttribute("content", "#ffffff");
-
-    document.getElementById(css.id).remove();
-    document.head.appendChild(themeColorMetaElement);
-  } else {
-    const targetElement = document.head || document.documentElement;
-    if (themeColorMetaElement)
-      themeColorMetaElement.setAttribute("content", "#000000");
-
-    targetElement.appendChild(css);
-    targetElement.appendChild(themeColorMetaElement);
-  }
-};
-
-// TODO for return to the previous theme (localstorage)
-// Toggle Dark Theme
-const toggleDarkTheme = () => {
-  switch (getState()) {
-    case true:
-      toggleStylesheet();
-      setState(false);
-      darkThemeButtonIcon.src = SOURCES.MOON_ICON;
-      darkThemeButtonText.innerText = "Dark theme";
-      templateThemeButtonIcon.src = SOURCES.PALETTE_ICON_D;
-      break;
-    case false:
-      toggleStylesheet();
-      setState(true);
-      darkThemeButtonIcon.src = SOURCES.SUN_ICON;
-      darkThemeButtonText.innerText = "Light theme";
-      templateThemeButtonIcon.src = SOURCES.PALETTE_ICON_W;
-      break;
-    default:
-      initState();
-      break;
-  }
 };
 
 
@@ -373,22 +265,24 @@ const itemBox = (divTarget, theme) =>{
 const itemBoxSelectTemplate = (e) => {
   console.log(e);
     switch(e.title){
-      case 'White':
+      case 'white':
+        addThemeToBody(e);
         setTheme('white');
         break;
-      case 'Red':
-        addThemeToBody(e.css);
+      case 'red':
+        addThemeToBody(e);
         setTheme('red');
         break;
-      case 'Blue':
-        addThemeToBody(e.css);
+      case 'blue':
+        addThemeToBody(e);
         setTheme('blue');
         break;
-      case 'Black': 
-        addThemeToBody(e.css);
+      case 'black':     
+        addThemeToBody(e);
         setTheme('black');
         break;
       case 'default':
+        addThemeToBody(e);
         setTheme('white');
         break;
     }
@@ -400,35 +294,44 @@ const addThemeToBody = (e) => {
     // eslint-disable-next-line quotes
     'meta[name="theme-color"]'
   );
+  if(e.css === 'white' || e.css === ''){
+    if(document.getElementById(cssTheme.id)){
+      document.getElementById(cssTheme.id).remove();
+    }
+} 
   const targetElement = document.head || document.documentElement;
-  if (themeColorMetaElement)
+  if (themeColorMetaElement){
     themeColorMetaElement.setAttribute("content", "#000000");
 
-    console.log(e);
-    cssTheme.href = SOURCES[e];
-    targetElement.appendChild(cssTheme);
-    targetElement.appendChild(themeColorMetaElement);
-    if(getState() === false){
-        toggleDarkTheme();
-    }
+    console.log(e.css);
+    
+      cssTheme.href = SOURCES[e.css];
+      setIconTemplateBtn(e.iconColor);
+      targetElement.appendChild(cssTheme);
+      targetElement.appendChild(themeColorMetaElement);
+  }
+ 
 }
 
+// Set icon template theme button
+const setIconTemplateBtn = (colorIcon) => {
+  let icon;
+  if(colorIcon === 'dark'){
+    icon = SOURCES.PALETTE_ICON_D;
+  }
+  if(colorIcon === 'light'){
+    icon = SOURCES.PALETTE_ICON_W;
+  }
+  templateThemeButtonIcon.src = icon
+}
 
-// Add dark theme button in option menu.
-const addDarkThemeButton = () => {
-  let optionsMenu = document.querySelector("._01UL2");
-
-  // insert our button above the "Settings" button.
-  if (optionsMenu)
-    optionsMenu.insertBefore(darkThemeButton, optionsMenu.children[2]);
-};
 // Add template theme button in option menu.
 const addTemplateThemeButton = () => {
   let optionsMenu = document.querySelector("._01UL2");
 
   // insert our button above the "Settings" button.
   if (optionsMenu)
-    optionsMenu.insertBefore(templateThemeButton, optionsMenu.children[3]);
+    optionsMenu.insertBefore(templateThemeButton, optionsMenu.children[2]);
 };
 
 // Add links to footer nav
