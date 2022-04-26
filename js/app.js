@@ -5,6 +5,7 @@
 // Elements
 // stylescheet with instagram style.
 let css;
+let cssTheme;
 
 // wrapper for things like popups etc.
 let wrapper;
@@ -36,11 +37,15 @@ let state;
 // theme in local storage
 let theme;
 
+// list of class names from IG
+let listClassIg = ['--b3f','--d87','--f23','--i1d','--f75','--ce3','--b38','--b6a','--ca6','--bb2','--fe0'];
+
 // list theme
 let themeList = {
-  white: { title: 'White', css:'white.css', img:'img/white'},
-  red: { title: 'Red', css:'red.css', img:'img/red'},
-  blue: { title: 'Blue', css:'blue.css', img:'img/blue'},
+  white: { title: 'White', css:'white-theme', img:'img/white'},
+  red: { title: 'Red', css: 'STYLETHEMERED', img:'img/red'},
+  blue: { title: 'Blue', css:'STYLETHEMEBLUE', img:'img/blue'},
+  black: { title: 'Black', css: 'STYLETHEMEBLACK', img:'img/black'},
 }
 // Browser Detection
 const getBrowser = () => {
@@ -127,7 +132,8 @@ const isAuthorized = () => {
 // Sources (images, assets)
 const SOURCES = {
   STYLESHEET: getBrowser().extension.getURL("css/style.css"),
-  STYLETHEME: getBrowser().extension.getURL("css/theme.css"),
+  STYLETHEMERED: getBrowser().extension.getURL("css/theme-red.css"),
+  STYLETHEMEBLUE: getBrowser().extension.getURL("css/theme-blue.css"),
   MOON_ICON: getBrowser().extension.getURL("img/moon-fill.svg"),
   SUN_ICON: getBrowser().extension.getURL("img/sun-fill.svg"),
   PALETTE_ICON_W: getBrowser().extension.getURL("img/palette-fill-light.svg"),
@@ -147,9 +153,8 @@ const initElements = () => {
   cssTheme = document.createElement("link");
   cssTheme.rel = "stylesheet";
   cssTheme.type = "text/css";
-  // TODO update from here
   cssTheme.id = "instagram-theme-stylesheet";
-  cssTheme.href = SOURCES.STYLETHEME;
+
   // Build wrapper element
   wrapper = document.createElement("div");
   wrapper.id = "instagram-dark-wrapper";
@@ -361,28 +366,53 @@ const itemBox = (divTarget, theme) =>{
   divTarget.appendChild(box);
   box.addEventListener('click', (e)=>{
     e.preventDefault();
-    itemBoxSelectTemplate(theme.title);
+    itemBoxSelectTemplate(theme);
   });
 }
 // Select template theme
 const itemBoxSelectTemplate = (e) => {
   console.log(e);
-    switch(e){
+    switch(e.title){
       case 'White':
-
         setTheme('white');
         break;
       case 'Red':
+        addThemeToBody(e.css);
         setTheme('red');
         break;
       case 'Blue':
+        addThemeToBody(e.css);
         setTheme('blue');
+        break;
+      case 'Black': 
+        addThemeToBody(e.css);
+        setTheme('black');
         break;
       case 'default':
         setTheme('white');
         break;
     }
 }
+
+// Add theme to the body (update the root)
+const addThemeToBody = (e) => {
+  const themeColorMetaElement = document.querySelector(
+    // eslint-disable-next-line quotes
+    'meta[name="theme-color"]'
+  );
+  const targetElement = document.head || document.documentElement;
+  if (themeColorMetaElement)
+    themeColorMetaElement.setAttribute("content", "#000000");
+
+    console.log(e);
+    cssTheme.href = SOURCES[e];
+    targetElement.appendChild(cssTheme);
+    targetElement.appendChild(themeColorMetaElement);
+    if(getState() === false){
+        toggleDarkTheme();
+    }
+}
+
 
 // Add dark theme button in option menu.
 const addDarkThemeButton = () => {

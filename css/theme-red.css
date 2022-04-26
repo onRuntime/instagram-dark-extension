@@ -1,0 +1,88 @@
+:root{
+     /* Dark Red */
+     --b3f: 175, 0, 0 !important;
+     --d87: 175, 0, 0 !important;
+     --f23: 175, 0, 0 !important;
+     /* Light Red */
+     --i1d: 255, 97, 97 !important;
+     --f75: 255, 97, 97 !important;
+     /* Red */
+     --ce3: 255, 0, 0 !important;
+     --b38: 255, 0, 0 !important;
+     --b6a: 255, 0, 0 !important;
+     --ca6: 255, 0, 0 !important;
+     --bb2: 255, 0, 0 !important;
+     /* Others */
+     --fe0: 0, 149, 246 !important;
+}
+
+
+body {
+     background: rgb(255, 255, 255) !important;
+ }
+ 
+ svg {
+     color: rgb(255, 255, 255) !important;
+     fill: rgb(255, 255, 255) !important;
+ }
+ 
+ /* red heart color */
+ 
+ svg[fill="#ed4956"] {
+     fill: rgb(237, 73, 86) !important;
+ }
+ 
+ /* Specific classes */
+ 
+ /* Removing color of "Log in with Facebook" on Login page */
+ 
+ .KPnG0 {
+     color: inherit !important;
+ }
+ 
+ /* Removing the forgotten shadow by Instagram in Profile menu */
+ 
+ .TOh1s {
+     display: none;
+ }
+ 
+ /* Color of link from links of hashtags, profiles */
+ 
+ ._7kTyW {
+     color: #fff !important;
+ }
+ 
+ /* Bacground color of sound icon */
+ 
+ .IhCmn {
+     background-color: #262626 !important;
+ }
+ 
+ /* Background color of the bottom left box in /accounts */
+ 
+ .wpHm3.Igw0E.IwRSH.eGOV_._4EzTm.O1flK.fm1AK {
+     background: #000 !important;
+ }
+ 
+ /* Color of the card title in /session/login_activity */
+ 
+ .leaflet-popup.leaflet-zoom-animated ._7UhW9.xLCgt.qyrsm.KV-D4.uL8Hv {
+     color: #000 !important;
+ }
+ 
+ /* Color of IGTV Upload in /tv/upload */
+ 
+ 
+ form .hSy4z, form .Ouy_P, form .t3CGe {
+     color: #fff;
+ }
+ 
+ /* Fix white background and color /settings/help */
+ article.PVkFi [data-bloks-name="bk.components.Flexbox"] * {
+     background: #000 !important;
+     color: #fff !important;
+ }
+ 
+ article.PVkFi [data-bloks-name="bk.components.Flexbox"] [data-bloks-name="ig.components.Icon"] {
+     background: #fff !important;
+ }
