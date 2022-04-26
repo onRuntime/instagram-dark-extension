@@ -271,27 +271,79 @@ footer[role="contentinfo"] .qF0y9.Igw0E.IwRSH.eGOV_._4EzTm._5VUwz {
     
 }
 .modal-dark-theme .modal-dark-theme-box{
-    background-color: #fff;
-    border-radius: 21px;
-    margin: 25% auto;
-    padding: 1rem max(3vw, 2rem);
+    background: rgba(var(--b3f,239,239,239),1);
+    border-radius: 5px;
+    margin: 15% auto;
+    padding: max(3vw, 2rem);
     width: clamp(300px, 90%, 700px);
     position: relative;
-    border-radius: 15px;
-    box-shadow:  0px 0px 18px 10px #d0d0d0;
+    box-shadow:  0px 0px 3px 1px #d0d0d0;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
     gap: 1rem;
     
 }
 .modal-dark-theme .modal-dark-theme-box .modal-box-themes{
     display: flex;
     flex-flow: column nowrap;
-    border-radius: 15px;
+    border-radius: 5px;
     width: calc(20% - 1rem);
     padding: .7rem;
     text-align: center;
-    background-color: whitesmoke;
-    box-shadow: 0px 0px 6px 4px #d0d0d0;
+    background: rgba(var(--b3f,239,239,239),1);
+    border: 1px solid rgba(var(--ce3, 239, 239, 239),1);
+    box-shadow: 0px 0px 1px 1px #d0d0d0;
     cursor: pointer;
+}
+.modal-theme {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .7rem;
+}
+.modal-title{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+}
+.title-modal {
+    font-size: 2rem;
+    font-weight: 600;
+}
+.sub-title-modal{
+    font-size: 1.2rem;
+}
+.modal-dark-theme-box img{
+    width: 16px;
+	height: 16px;
+}
+.modal-dark-theme-box p, .modal-dark-theme-box span, .modal-dark-theme-box h4{
+    color: rgba(var(--p-modal, 0, 0, 0), 1);
+    text-transform: capitalize;
+    font-family: "Poppins", sans-serif !important;
+}
+.list-modal-item {
+    display: flex;
+    flex-flow: row wrap;
+    gap: .7rem;
+}
+#close-modal{
+ position: absolute;
+ top: 1rem;
+ right: 1rem;
+ cursor: pointer;
+}
+#close-modal img {
+    height: 24px;
+    width: 24px;
+}
+
+/* Style border box */
+.box-square {
+    border-radius: none;
+}
+.box-rounded {
+    border-radius: 3px;
+}
+.box-circle {
+    border-radius: 20px;
 }

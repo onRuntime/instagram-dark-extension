@@ -13,18 +13,20 @@
      --f75: 255, 255, 255 !important;
      /* grey */
         /* Line color top img pots and bottom of the posts */
-     --ce3: 0, 0, 255 !important;
+     --ce3: 38,38,38 !important;
         /* line separator (settings) */
-     --b38: 0, 0, 255 !important;
+     --b38: 38,38,38 !important;
         /* Border of the box (pots) and bottom header */
-     --b6a: 0, 0, 255 !important;
+     --b6a: 38,38,38 !important;
         /* border of the inputs */
-     --ca6: 0, 0, 255 !important;
+     --ca6: 38,38,38 !important;
         /* background of search box (header) */
-     --bb2: 0, 0, 255 !important;
+     --bb2: 38,38,38 !important;
      /* Others */
         /* Don't know */
      --fe0: 0, 149, 246 !important;
+       /* p-modal */
+    --p-modal: 255, 255, 255 !important;
 }
 
 body {

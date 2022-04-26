@@ -25,6 +25,8 @@
      /* Others */
            /* Don't know */
      --fe0: 0, 149, 246 !important;
+       /* p-modal */
+    --p-modal: 255, 255, 255 !important;
 }
 
 

@@ -10,15 +10,16 @@ let cssTheme;
 // wrapper for things like popups etc.
 let wrapper;
 
-// dark theme button in option list.
-let darkThemeButton;
-let darkThemeButtonIcon;
-let darkThemeButtonText;
-
 // template theme button in option list
 let templateThemeButton;
 let templateThemeButtonIcon;
 let templateThemeButtonText;
+
+// modal icons set
+let fontIcon;
+let paletteIcon;
+let borderIcon;
+let closeIcon;
 
 // custom links in footer
 let discordLink;
@@ -41,6 +42,13 @@ let themeList = {
   red: { title: 'red', css: 'STYLETHEMERED', img:'img/red' , iconColor: 'light'},
   blue: { title: 'blue', css:'STYLETHEMEBLUE', img:'img/blue' , iconColor: 'light'},
   black: { title: 'black', css: 'STYLETHEMEBLACK', img:'img/black' , iconColor: 'light'},
+}
+
+// list border
+let borderList = {
+  square:{ title: 'square', css: 'box-square'},
+  rounded: { title: 'rounded', css: 'box-rounded'},
+  circle: { title: 'circle', css: 'box-circle'},
 }
 // Browser Detection
 const getBrowser = () => {
@@ -129,10 +137,16 @@ const SOURCES = {
   STYLETHEMERED: getBrowser().extension.getURL("css/theme-red.css"),
   STYLETHEMEBLUE: getBrowser().extension.getURL("css/theme-blue.css"),
   STYLETHEMEBLACK: getBrowser().extension.getURL("css/theme-black.css"),
-  MOON_ICON: getBrowser().extension.getURL("img/moon-fill.svg"),
-  SUN_ICON: getBrowser().extension.getURL("img/sun-fill.svg"),
   PALETTE_ICON_W: getBrowser().extension.getURL("img/palette-fill-light.svg"),
   PALETTE_ICON_D: getBrowser().extension.getURL("img/palette-fill-dark.svg"),
+  ARROW_ICON_W: getBrowser().extension.getURL("img/arrow-down-s-line-light.svg"),
+  ARROW_ICON_D: getBrowser().extension.getURL("img/arrow-down-s-line-black.svg"),
+  CLOSE_ICON_W: getBrowser().extension.getURL("img/close-fill-light.svg"),
+  CLOSE_ICON_D: getBrowser().extension.getURL("img/close-fill-black.svg"),
+  FONT_ICON_W: getBrowser().extension.getURL("img/font-size-light.svg"),
+  FONT_ICON_D: getBrowser().extension.getURL("img/font-size-black.svg"),
+  SHAPE_ICON_W: getBrowser().extension.getURL("img/shape-fill-ligth.svg"),
+  SHAPE_ICON_D: getBrowser().extension.getURL("img/shape-fill-black.svg"),
 };
 
 // Elements
@@ -230,14 +244,82 @@ const toggleTemplateTheme = () => {
     modalBox.classList.add("modal-dark-theme-box");
     backgroundModal.appendChild(modalBox);
 
+    const title = document.createElement("h4");
+    title.classList.add("title-modal");
+    // TODO change name !
+    title.innerText = "IG Theme selectors";
+    modalBox.appendChild(title);
+
+    const subTitle = document.createElement("p");
+    subTitle.classList.add("sub-title-modal");
+    subTitle.innerText = "Custom your IG as you want";
+    modalBox.appendChild(subTitle);
+
+    // font part 
+    // const divFont = document.createElement("div");
+    // divFont.classList.add("modal-box");
+    // modalBox.appendChild(divFont);
+
+    // const divFontTitle = document.createElement("div");
+    // fontIcon = document.createElement("img");
+    // divFontTitle.appendChild(fontIcon);
+
+    // const titleFont = document.createElement("span");
+    // titleFont.innerText= "Font familly";
+    // divFontTitle.appendChild(titleFont);
+    // modalBox.appendChild(divFontTitle);
+
+    // theme part
+    const divTheme = document.createElement("div");
+    divTheme.classList.add("modal-box");
+    modalBox.appendChild(divTheme);
+
+    const divThemeTitle = document.createElement("div");
+    divThemeTitle.classList.add("modal-title");
+    paletteIcon = document.createElement("img");
+    divThemeTitle.appendChild(paletteIcon);
+
+    const titleTheme = document.createElement("span");
+    titleTheme.innerText= "Template theme";
+    divThemeTitle.appendChild(titleTheme);
+    modalBox.appendChild(divThemeTitle);
+
+    const listDivTheme = document.createElement("div");
+    listDivTheme.classList.add("list-modal-item");
+    modalBox.appendChild(listDivTheme);
     for (const theme in themeList) {
-      itemBox(modalBox, themeList[theme]);
+      itemBox(listDivTheme, themeList[theme]);
     }
+    //  Border part
+    // const divBorder = document.createElement("div");
+    // divBorder.classList.add("modal-box");
+    // modalBox.appendChild(divBorder);
+
+    // const divBorderTitle = document.createElement("div");
+    // borderIcon = document.createElement("img");
+    // divBorderTitle.appendChild(borderIcon);
+
+    // const titleBorder = document.createElement("span");
+    // titleBorder.innerText= "Box style";
+    // divBorderTitle.appendChild(titleBorder);
+    // modalBox.appendChild(divBorderTitle);
+
+    // const listDivBorder = document.createElement("div");
+    // listDivBorder.classList.add("list-modal-item");
+    // modalBox.appendChild(listDivBorder);
+    // for (const border in borderList) {
+    //   itemBox(listDivBorder, borderList[border]);
+    // }
     // close modal
-    //target for close
-    // closeModal.addEventListener('click', ()=>{
-    //   modalBox.remove();
-    // })
+    const closeModal = document.createElement("div");
+    closeModal.id = "close-modal";
+    closeIcon = document.createElement("img");
+    closeModal.appendChild(closeIcon);
+    modalBox.appendChild(closeModal);
+    setIconModal();
+    closeModal.addEventListener('click', ()=>{
+      backgroundModal.remove();
+    })
     window.addEventListener('click', (event) =>{
         if (event.target == backgroundModal) {
             backgroundModal.remove();
@@ -245,6 +327,26 @@ const toggleTemplateTheme = () => {
     })
 }
 
+// set icon with contraste 
+const setIconModal = () => {
+  colorIcon = getObject(getTheme(), themeList);
+  let icon;
+  let close;
+  if(colorIcon.iconColor === 'dark'){
+    icon = SOURCES.PALETTE_ICON_D;
+    close = SOURCES.CLOSE_ICON_D;
+    // fontIcon.src = SOURCES.FONT_ICON_D;
+    // borderIcon.src = SOURCES.SHAPE_ICON_D;
+  }
+  if(colorIcon.iconColor === 'light'){
+    icon = SOURCES.PALETTE_ICON_W;
+    close = SOURCES.CLOSE_ICON_W;
+    // fontIcon.src = SOURCES.FONT_ICON_W;
+    // borderIcon.src = SOURCES.SHAPE_ICON_W;
+  }
+  paletteIcon.src = icon;
+  closeIcon.src = close;
+}
 // item box template theme
 const itemBox = (divTarget, theme) =>{
   const box = document.createElement('div');
@@ -259,6 +361,7 @@ const itemBox = (divTarget, theme) =>{
   box.addEventListener('click', (e)=>{
     e.preventDefault();
     itemBoxSelectTemplate(theme);
+    setIconModal();
   });
 }
 // Select template theme
@@ -441,6 +544,14 @@ const addFirstIntall = (first_install, r) => {
   });
 };
 
+// get object from storage
+const getObject = (string, list)=>{
+  for(const item in list){
+    if(item === string){
+      return list[item];
+    }
+  }
+}
 // App
 const App = () => {
   // Build
