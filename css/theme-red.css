@@ -1,18 +1,29 @@
 :root{
      /* Dark Red */
+          /* Background and right sider */
      --b3f: 175, 0, 0 !important;
+          /* Header and box background */
      --d87: 175, 0, 0 !important;
+          /* Don't know */
      --f23: 175, 0, 0 !important;
      /* Light Red */
+            /* title and text in bold */
      --i1d: 255, 97, 97 !important;
+          /* title of the posts and selected items */
      --f75: 255, 97, 97 !important;
      /* Red */
+          /* Line color top img pots and bottom of the posts */
      --ce3: 255, 0, 0 !important;
+          /* line separator (settings) */
      --b38: 255, 0, 0 !important;
+           /* Border of the box (pots) and bottom header */
      --b6a: 255, 0, 0 !important;
+          /* border of the inputs */
      --ca6: 255, 0, 0 !important;
+           /* background of search box (header) */
      --bb2: 255, 0, 0 !important;
      /* Others */
+           /* Don't know */
      --fe0: 0, 149, 246 !important;
 }
 

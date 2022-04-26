@@ -1,19 +1,30 @@
 :root {
     /* Black */
-    --b3f: 0, 0, 0 !important;
-    --d87: 0, 0, 0 !important;
-    --f23: 0, 0, 0 !important;
-    /* White */
-    --i1d: 255, 255, 255 !important;
-    --f75: 255, 255, 255 !important;
-    /* Grey */
-    --ce3: 38, 38, 38 !important;
-    --b38: 38, 38, 38 !important;
-    --b6a: 38, 38, 38 !important;
-    --ca6: 38, 38, 38 !important;
-    --bb2: 38, 38, 38 !important;
-    /* Others */
-    --fe0: 0, 149, 246 !important;
+        /* Background and right sider */
+    --b3f: 0,0,0 !important;
+        /* Header and box background */
+     --d87: 0,0,0 !important;
+        /* Don't know */
+     --f23: 0,0,0 !important;
+     /* white */
+        /* title and text in bold */
+     --i1d: 255, 255, 255 !important;
+        /* title of the posts and selected items */
+     --f75: 255, 255, 255 !important;
+     /* grey */
+        /* Line color top img pots and bottom of the posts */
+     --ce3: 0, 0, 255 !important;
+        /* line separator (settings) */
+     --b38: 0, 0, 255 !important;
+        /* Border of the box (pots) and bottom header */
+     --b6a: 0, 0, 255 !important;
+        /* border of the inputs */
+     --ca6: 0, 0, 255 !important;
+        /* background of search box (header) */
+     --bb2: 0, 0, 255 !important;
+     /* Others */
+        /* Don't know */
+     --fe0: 0, 149, 246 !important;
 }
 
 body {
