@@ -26,17 +26,17 @@
            /* Don't know */
      --fe0: 0, 149, 246 !important;
        /* p-modal */
-    --p-modal: 255, 255, 255 !important;
+    --p-modal: 236, 233, 227 !important;
 }
 
 
 body {
-     background: rgb(255, 255, 255) !important;
+     background: rgb(236, 233, 227) !important;
  }
  
  svg {
-     color: rgb(255, 255, 255) !important;
-     fill: rgb(255, 255, 255) !important;
+     color: rgb(236, 233, 227) !important;
+     fill: rgb(236, 233, 227) !important;
  }
  
  /* red heart color */
@@ -62,7 +62,7 @@ body {
  /* Color of link from links of hashtags, profiles */
  
  ._7kTyW {
-     color: #fff !important;
+     color: #ece9e3 !important;
  }
  
  /* Bacground color of sound icon */
@@ -87,15 +87,15 @@ body {
  
  
  form .hSy4z, form .Ouy_P, form .t3CGe {
-     color: #fff;
+     color: #ece9e3;
  }
  
  /* Fix white background and color /settings/help */
  article.PVkFi [data-bloks-name="bk.components.Flexbox"] * {
      background: #000 !important;
-     color: #fff !important;
+     color: #ece9e3 !important;
  }
  
  article.PVkFi [data-bloks-name="bk.components.Flexbox"] [data-bloks-name="ig.components.Icon"] {
-     background: #fff !important;
+     background: #ece9e3 !important;
  }

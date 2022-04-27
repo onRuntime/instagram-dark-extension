@@ -8,9 +8,9 @@
      --f23: 0,0,0 !important;
      /* white */
         /* title and text in bold */
-     --i1d: 255, 255, 255 !important;
+     --i1d: 236, 233, 227 !important;
         /* title of the posts and selected items */
-     --f75: 255, 255, 255 !important;
+     --f75: 236, 233, 227 !important;
      /* grey */
         /* Line color top img pots and bottom of the posts */
      --ce3: 38,38,38 !important;
@@ -26,7 +26,7 @@
         /* Don't know */
      --fe0: 0, 149, 246 !important;
        /* p-modal */
-    --p-modal: 255, 255, 255 !important;
+    --p-modal: 236, 233, 227 !important;
 }
 
 body {
@@ -34,8 +34,8 @@ body {
 }
 
 svg {
-    color: rgb(255, 255, 255) !important;
-    fill: rgb(255, 255, 255) !important;
+    color: rgb(236, 233, 227) !important;
+    fill: rgb(236, 233, 227) !important;
 }
 
 /* red heart color */
@@ -61,7 +61,7 @@ svg[fill="#ed4956"] {
 /* Color of link from links of hashtags, profiles */
 
 ._7kTyW {
-    color: #fff !important;
+    color: #ece9e3 !important;
 }
 
 /* Bacground color of sound icon */
@@ -86,15 +86,15 @@ svg[fill="#ed4956"] {
 
 
 form .hSy4z, form .Ouy_P, form .t3CGe {
-    color: #fff;
+    color: #ece9e3;
 }
 
 /* Fix white background and color /settings/help */
 article.PVkFi [data-bloks-name="bk.components.Flexbox"] * {
     background: #000 !important;
-    color: #fff !important;
+    color: #ece9e3 !important;
 }
 
 article.PVkFi [data-bloks-name="bk.components.Flexbox"] [data-bloks-name="ig.components.Icon"] {
-    background: #fff !important;
+    background: #ece9e3 !important;
 }

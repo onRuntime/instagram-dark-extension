@@ -4,8 +4,8 @@
     --d87: 0, 0, 0 !important;
     --f23: 0, 0, 0 !important;
     /* White */
-    --i1d: 255, 255, 255 !important;
-    --f75: 255, 255, 255 !important;
+    --i1d: 236, 233, 227 !important;
+    --f75: 236, 233, 227 !important;
     /* Grey */
     --ce3: 38, 38, 38 !important;
     --b38: 38, 38, 38 !important;
@@ -21,8 +21,8 @@ body {
 }
 
 svg {
-    color: rgb(255, 255, 255) !important;
-    fill: rgb(255, 255, 255) !important;
+    color: rgb(236, 233, 227) !important;
+    fill: rgb(236, 233, 227) !important;
 }
 
 /* red heart color */
@@ -62,7 +62,7 @@ svg[fill="#ed4956"] {
 /* Color of link from links of hashtags, profiles */
 
 ._7kTyW {
-    color: #fff !important;
+    color: #ece9e3 !important;
 }
 
 /* Bacground color of sound icon */
@@ -87,17 +87,17 @@ svg[fill="#ed4956"] {
 
 
 form .hSy4z, form .Ouy_P, form .t3CGe {
-    color: #fff;
+    color: #ece9e3;
 }
 
 /* Fix white background and color /settings/help */
 article.PVkFi [data-bloks-name="bk.components.Flexbox"] * {
     background: #000 !important;
-    color: #fff !important;
+    color: #ece9e3 !important;
 }
 
 article.PVkFi [data-bloks-name="bk.components.Flexbox"] [data-bloks-name="ig.components.Icon"] {
-    background: #fff !important;
+    background: #ece9e3 !important;
 }
 
 /*
