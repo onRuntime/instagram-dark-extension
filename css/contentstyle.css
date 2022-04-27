@@ -373,3 +373,17 @@ footer[role="contentinfo"] .qF0y9.Igw0E.IwRSH.eGOV_._4EzTm._5VUwz {
     width: 14px;
     height: 14px;
 }
+/* header shadow */
+._lz6s{
+    box-shadow: 0px 0px 3px 2px rgb(var(--f75));
+}
+._lz6s::before{
+    content: ' ';
+    height: 1px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    background-color: rgb(var(--b3f));
+    position: absolute;
+}
