@@ -347,3 +347,29 @@ footer[role="contentinfo"] .qF0y9.Igw0E.IwRSH.eGOV_._4EzTm._5VUwz {
 .box-circle {
     border-radius: 20px;
 }
+/* add post border */
+._1XyCr{
+    border: inset;
+}
+/* menu drop down */
+.uo5MA::before{
+    content: ' ';
+    box-shadow: 0px 0px 4px 2px #d0d0d0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+}
+.AvhYw::before{
+    content: ' ';
+    background: linear-gradient(-45deg, rgb(var( --b3f)) 65%,#d0d0d0 100%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+}
