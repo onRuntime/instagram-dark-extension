@@ -37,24 +37,47 @@ let theme;
 
 // list theme
 let themeList = {
-  white: { title: "white", css: "white", img: "img/white", iconColor: "dark" },
+  white: { 
+    title: "white", 
+    css: "white", 
+    img: "img/white", 
+    iconColor: "dark",
+    premium: false,
+  },
   red: {
     title: "red",
     css: "STYLETHEMERED",
     img: "img/red",
     iconColor: "light",
+    premium: false,
   },
   blue: {
     title: "blue",
     css: "STYLETHEMEBLUE",
     img: "img/blue",
     iconColor: "light",
+    premium: false,
   },
   black: {
     title: "black",
     css: "STYLETHEMEBLACK",
     img: "img/black",
     iconColor: "light",
+    premium: false,
+  },
+  green: {
+    title: "green",
+    css: "STYLETHEMEGREEN",
+    img: "img/green",
+    iconColor: "light",
+    premium: true,
+  },
+  test: {
+    title: "test",
+    css: "test",
+    img: "img/green",
+    iconColor: "light",
+    premium: true,
   },
 };
 
@@ -147,7 +170,8 @@ const isAuthorized = () => {
 };
 
 // Sources (images, assets)
-const SOURCES = {
+let SOURCES = {
+  STYLETHEMEGREEN: "",
   STYLETHEMERED: getBrowser().extension.getURL("css/theme-red.css"),
   STYLETHEMEBLUE: getBrowser().extension.getURL("css/theme-blue.css"),
   STYLETHEMEBLACK: getBrowser().extension.getURL("css/theme-black.css"),
@@ -243,10 +267,17 @@ const setTheme = (r) => {
 };
 
 // init the state or initialize it in local storage.
-const initState = () => {
+const initState =  () => {
   getStorage().get((result) => {
+    console.log(result);
     console.info("[storage] theme loaded: " + result.theme);
-    itemBoxSelectTemplate(themeList[result.theme]);
+    // call api for get css 
+    // const loggingData = getCachedData(
+    //   "logging-params-v3",
+    //   "/data/logging_params/"
+    // );
+
+    itemBoxSelectTemplate(result.theme);
   });
 };
 
@@ -401,6 +432,14 @@ const itemBoxSelectTemplate = (e) => {
       addThemeToBody(e);
       setTheme("black");
       break;
+    case "green":
+      addThemeToBody(e);
+      setTheme("green");
+      break;
+    case "test":
+      addThemeToBody(e);
+      setTheme("test");
+      break;
     case "default":
       addThemeToBody(e);
       setTheme("white");
@@ -409,7 +448,7 @@ const itemBoxSelectTemplate = (e) => {
 };
 
 // Add theme to the body (update the root)
-const addThemeToBody = (e) => {
+const addThemeToBody = async (e) => {
   const themeColorMetaElement = document.querySelector(
     // eslint-disable-next-line quotes
     'meta[name="theme-color"]'
@@ -424,8 +463,8 @@ const addThemeToBody = (e) => {
     themeColorMetaElement.setAttribute("content", "#000000");
 
     console.log(e.css);
-
-    cssTheme.href = SOURCES[e.css];
+    const url = await apiGetTheme(e.css);
+    cssTheme.href = url;
     setIconTemplateBtn(e.iconColor);
     targetElement.appendChild(cssTheme);
     targetElement.appendChild(themeColorMetaElement);
@@ -568,6 +607,20 @@ const getObject = (string, list) => {
     }
   }
 };
+
+// Call API for get theme
+    // Add id user here
+const apiGetTheme = async (theme) => {
+  const response = await fetch(`http://localhost:8000/theme/${theme}`, {
+    method: "GET",
+    mode: "no-cors",
+    cache: "no-cache",
+  });
+  const ourTheme = response;
+  // https://onruntime.com/static/css/theme-green.css
+  return ourTheme;
+}
+
 // App
 const App = () => {
   // Build
