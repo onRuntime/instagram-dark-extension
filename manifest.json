@@ -20,7 +20,7 @@
         }
     ],
     "web_accessible_resources": [
-        "css/style.css",
+        "css/*",
         "img/*"
     ],
     "permissions": [

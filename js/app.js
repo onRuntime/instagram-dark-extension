@@ -4,15 +4,21 @@
 
 // Elements
 // stylescheet with instagram style.
-let css;
+let cssTheme;
 
 // wrapper for things like popups etc.
 let wrapper;
 
-// dark theme button in option list.
-let darkThemeButton;
-let darkThemeButtonIcon;
-let darkThemeButtonText;
+// template theme button in option list
+let templateThemeButton;
+let templateThemeButtonIcon;
+let templateThemeButtonText;
+
+// modal icons set
+let fontIcon;
+let paletteIcon;
+let borderIcon;
+let closeIcon;
 
 // custom links in footer
 let discordLink;
@@ -26,9 +32,38 @@ let onRuntimeLink;
 let customLinksInterval;
 
 // Variables
-// state of dark theme [true: dark | false: light].
-let state;
+// theme in local storage
+let theme;
 
+// list theme
+let themeList = {
+  white: { title: "white", css: "white", img: "img/white", iconColor: "dark" },
+  red: {
+    title: "red",
+    css: "STYLETHEMERED",
+    img: "img/red",
+    iconColor: "light",
+  },
+  blue: {
+    title: "blue",
+    css: "STYLETHEMEBLUE",
+    img: "img/blue",
+    iconColor: "light",
+  },
+  black: {
+    title: "black",
+    css: "STYLETHEMEBLACK",
+    img: "img/black",
+    iconColor: "light",
+  },
+};
+
+// list border
+let borderList = {
+  square: { title: "square", css: "box-square" },
+  rounded: { title: "rounded", css: "box-rounded" },
+  circle: { title: "circle", css: "box-circle" },
+};
 // Browser Detection
 const getBrowser = () => {
   if (typeof chrome !== "undefined") {
@@ -113,43 +148,53 @@ const isAuthorized = () => {
 
 // Sources (images, assets)
 const SOURCES = {
-  STYLESHEET: getBrowser().extension.getURL("css/style.css"),
-  MOON_ICON: getBrowser().extension.getURL("img/moon-fill.svg"),
-  SUN_ICON: getBrowser().extension.getURL("img/sun-fill.svg"),
+  STYLETHEMERED: getBrowser().extension.getURL("css/theme-red.css"),
+  STYLETHEMEBLUE: getBrowser().extension.getURL("css/theme-blue.css"),
+  STYLETHEMEBLACK: getBrowser().extension.getURL("css/theme-black.css"),
+  PALETTE_ICON_W: getBrowser().extension.getURL("img/palette-fill-light.svg"),
+  PALETTE_ICON_D: getBrowser().extension.getURL("img/palette-fill-dark.svg"),
+  ARROW_ICON_W: getBrowser().extension.getURL(
+    "img/arrow-down-s-line-light.svg"
+  ),
+  ARROW_ICON_D: getBrowser().extension.getURL(
+    "img/arrow-down-s-line-black.svg"
+  ),
+  CLOSE_ICON_W: getBrowser().extension.getURL("img/close-fill-light.svg"),
+  CLOSE_ICON_D: getBrowser().extension.getURL("img/close-fill-black.svg"),
+  FONT_ICON_W: getBrowser().extension.getURL("img/font-size-light.svg"),
+  FONT_ICON_D: getBrowser().extension.getURL("img/font-size-black.svg"),
+  SHAPE_ICON_W: getBrowser().extension.getURL("img/shape-fill-ligth.svg"),
+  SHAPE_ICON_D: getBrowser().extension.getURL("img/shape-fill-black.svg"),
 };
 
 // Elements
 const initElements = () => {
-  // Build css element
-  css = document.createElement("link");
-  css.rel = "stylesheet";
-  css.type = "text/css";
-  css.id = "instagram-dark-stylesheet";
-  css.href = SOURCES.STYLESHEET;
+  // Theme css
+  cssTheme = document.createElement("link");
+  cssTheme.rel = "stylesheet";
+  cssTheme.type = "text/css";
+  cssTheme.id = "instagram-theme-stylesheet";
 
   // Build wrapper element
   wrapper = document.createElement("div");
   wrapper.id = "instagram-dark-wrapper";
   document.body.appendChild(wrapper);
 
-  // Build dark theme button element
-  darkThemeButton = document.createElement("div");
-  darkThemeButton.id = "instagram-dark-toggle-button";
-  darkThemeButton.classList.add("-qQT3");
+  // Build template theme button element
+  templateThemeButton = document.createElement("div");
+  templateThemeButton.id = "template-theme-modal-button";
+  templateThemeButton.classList.add("-qQT3");
+  templateThemeButtonIcon = document.createElement("img");
+  templateThemeButton.appendChild(templateThemeButtonIcon);
 
-  darkThemeButtonIcon = document.createElement("img");
-  //   darkThemeButtonIcon.src = state ? SOURCES.MOON_ICON : SOURCES.SUN_ICON;
-  darkThemeButton.appendChild(darkThemeButtonIcon);
-
-  darkThemeButtonText = document.createElement("span");
-  darkThemeButtonText.innerText = "Dark theme";
-
-  darkThemeButton.appendChild(darkThemeButtonText);
-  darkThemeButton.addEventListener("click", toggleDarkTheme);
+  templateThemeButtonText = document.createElement("span");
+  templateThemeButtonText.innerText = "Template theme";
+  templateThemeButton.appendChild(templateThemeButtonText);
+  templateThemeButton.addEventListener("click", toggleTemplateTheme);
   document.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG" && e.target.classList.contains("_6q-tv")) {
       // delay adding the button to allow the menu to render
-      setTimeout(addDarkThemeButton, 10);
+      setTimeout(addTemplateThemeButton, 10);
     }
   });
 
@@ -185,91 +230,227 @@ const initElements = () => {
   });
 };
 
-// Dark Theme State
-// get the state variable.
-const getState = () => state;
+// Theme in storage
+// get the theme variable.
+const getTheme = () => theme;
 
-// set the state in variable and in localstorage.
-const setState = (r) => {
-  state = r;
-  getStorage().set({ state: r }, () =>
-    console.log("[storage] state saved: " + r)
+// set the Theme in variable and in localstorage.
+const setTheme = (r) => {
+  theme = r;
+  getStorage().set({ theme: r }, () =>
+    console.log("[storage] Theme saved: " + r)
   );
 };
 
 // init the state or initialize it in local storage.
 const initState = () => {
-  getStorage().get(["state"], (result) => {
-    console.log("[storage] state loaded: " + result.state);
-    if (result.state == undefined) {
-      setState(true);
-      toggleStylesheet();
-      darkThemeButtonIcon.src = SOURCES.SUN_ICON;
-      darkThemeButtonText.innerText = "Light theme";
-    } else {
-      setState(result.state);
-      darkThemeButtonIcon.src = SOURCES.MOON_ICON;
-      darkThemeButtonText.innerText = "Dark theme";
-      if (getState() == true) {
-        toggleStylesheet();
-        darkThemeButtonIcon.src = SOURCES.SUN_ICON;
-        darkThemeButtonText.innerText = "Light theme";
-      }
+  getStorage().get((result) => {
+    console.info("[storage] theme loaded: " + result.theme);
+    itemBoxSelectTemplate(themeList[result.theme]);
+  });
+};
+
+// toggle modal
+const toggleTemplateTheme = () => {
+  console.log("Show modal");
+  const backgroundModal = document.createElement("div");
+  backgroundModal.classList.add("modal-dark-theme");
+  document.body.appendChild(backgroundModal);
+
+  const modalBox = document.createElement("div");
+  modalBox.classList.add("modal-dark-theme-box");
+  backgroundModal.appendChild(modalBox);
+
+  const title = document.createElement("h4");
+  title.classList.add("title-modal");
+  // TODO change name !
+  title.innerText = "IG Theme selectors";
+  modalBox.appendChild(title);
+
+  const subTitle = document.createElement("p");
+  subTitle.classList.add("sub-title-modal");
+  subTitle.innerText = "Custom your IG as you want";
+  modalBox.appendChild(subTitle);
+
+  // font part
+  // const divFont = document.createElement("div");
+  // divFont.classList.add("modal-box");
+  // modalBox.appendChild(divFont);
+
+  // const divFontTitle = document.createElement("div");
+  // fontIcon = document.createElement("img");
+  // divFontTitle.appendChild(fontIcon);
+
+  // const titleFont = document.createElement("span");
+  // titleFont.innerText= "Font familly";
+  // divFontTitle.appendChild(titleFont);
+  // modalBox.appendChild(divFontTitle);
+
+  // theme part
+  const divTheme = document.createElement("div");
+  divTheme.classList.add("modal-box");
+  modalBox.appendChild(divTheme);
+
+  const divThemeTitle = document.createElement("div");
+  divThemeTitle.classList.add("modal-title");
+  paletteIcon = document.createElement("img");
+  divThemeTitle.appendChild(paletteIcon);
+
+  const titleTheme = document.createElement("span");
+  titleTheme.innerText = "Template theme";
+  divThemeTitle.appendChild(titleTheme);
+  modalBox.appendChild(divThemeTitle);
+
+  const listDivTheme = document.createElement("div");
+  listDivTheme.classList.add("list-modal-item");
+  modalBox.appendChild(listDivTheme);
+  for (const theme in themeList) {
+    itemBox(listDivTheme, themeList[theme]);
+  }
+  //  Border part
+  // const divBorder = document.createElement("div");
+  // divBorder.classList.add("modal-box");
+  // modalBox.appendChild(divBorder);
+
+  // const divBorderTitle = document.createElement("div");
+  // borderIcon = document.createElement("img");
+  // divBorderTitle.appendChild(borderIcon);
+
+  // const titleBorder = document.createElement("span");
+  // titleBorder.innerText= "Box style";
+  // divBorderTitle.appendChild(titleBorder);
+  // modalBox.appendChild(divBorderTitle);
+
+  // const listDivBorder = document.createElement("div");
+  // listDivBorder.classList.add("list-modal-item");
+  // modalBox.appendChild(listDivBorder);
+  // for (const border in borderList) {
+  //   itemBox(listDivBorder, borderList[border]);
+  // }
+  // close modal
+  const closeModal = document.createElement("div");
+  closeModal.id = "close-modal";
+  closeIcon = document.createElement("img");
+  closeModal.appendChild(closeIcon);
+  modalBox.appendChild(closeModal);
+  setIconModal();
+  closeModal.addEventListener("click", () => {
+    backgroundModal.remove();
+  });
+  window.addEventListener("click", (event) => {
+    if (event.target == backgroundModal) {
+      backgroundModal.remove();
     }
   });
 };
 
-// Toggle Stylesheet
-const toggleStylesheet = () => {
+// set icon with contraste
+const setIconModal = () => {
+  let colorIcon = getObject(getTheme(), themeList);
+  let icon;
+  let close;
+  if (colorIcon.iconColor === "dark") {
+    icon = SOURCES.PALETTE_ICON_D;
+    close = SOURCES.CLOSE_ICON_D;
+    // fontIcon.src = SOURCES.FONT_ICON_D;
+    // borderIcon.src = SOURCES.SHAPE_ICON_D;
+  }
+  if (colorIcon.iconColor === "light") {
+    icon = SOURCES.PALETTE_ICON_W;
+    close = SOURCES.CLOSE_ICON_W;
+    // fontIcon.src = SOURCES.FONT_ICON_W;
+    // borderIcon.src = SOURCES.SHAPE_ICON_W;
+  }
+  paletteIcon.src = icon;
+  closeIcon.src = close;
+};
+// item box template theme
+const itemBox = (divTarget, theme) => {
+  const box = document.createElement("div");
+  box.classList.add("modal-box-themes");
+  console.log(theme);
+  // const imgItemBox = document.createElement('img');
+  // imgItemBox.src = getBrowser().extension.getURL(theme.img)
+  const titleItemBox = document.createElement("p");
+  titleItemBox.innerText = theme.title;
+  box.appendChild(titleItemBox);
+  divTarget.appendChild(box);
+  box.addEventListener("click", (e) => {
+    e.preventDefault();
+    itemBoxSelectTemplate(theme);
+    setIconModal();
+  });
+};
+// Select template theme
+const itemBoxSelectTemplate = (e) => {
+  console.log(e);
+  switch (e.title) {
+    case "white":
+      addThemeToBody(e);
+      setTheme("white");
+      break;
+    case "red":
+      addThemeToBody(e);
+      setTheme("red");
+      break;
+    case "blue":
+      addThemeToBody(e);
+      setTheme("blue");
+      break;
+    case "black":
+      addThemeToBody(e);
+      setTheme("black");
+      break;
+    case "default":
+      addThemeToBody(e);
+      setTheme("white");
+      break;
+  }
+};
+
+// Add theme to the body (update the root)
+const addThemeToBody = (e) => {
   const themeColorMetaElement = document.querySelector(
     // eslint-disable-next-line quotes
     'meta[name="theme-color"]'
   );
+  if (e.css === "white" || e.css === "") {
+    if (document.getElementById(cssTheme.id)) {
+      document.getElementById(cssTheme.id).remove();
+    }
+  }
+  const targetElement = document.head || document.documentElement;
+  if (themeColorMetaElement) {
+    themeColorMetaElement.setAttribute("content", "#000000");
 
-  if (document.getElementById(css.id)) {
-    if (themeColorMetaElement)
-      themeColorMetaElement.setAttribute("content", "#ffffff");
+    console.log(e.css);
 
-    document.getElementById(css.id).remove();
-    document.head.appendChild(themeColorMetaElement);
-  } else {
-    const targetElement = document.head || document.documentElement;
-    if (themeColorMetaElement)
-      themeColorMetaElement.setAttribute("content", "#000000");
-
-    targetElement.appendChild(css);
+    cssTheme.href = SOURCES[e.css];
+    setIconTemplateBtn(e.iconColor);
+    targetElement.appendChild(cssTheme);
     targetElement.appendChild(themeColorMetaElement);
   }
 };
 
-// Toggle Dark Theme
-const toggleDarkTheme = () => {
-  switch (getState()) {
-    case true:
-      toggleStylesheet();
-      setState(false);
-      darkThemeButtonIcon.src = SOURCES.MOON_ICON;
-      darkThemeButtonText.innerText = "Dark theme";
-      break;
-    case false:
-      toggleStylesheet();
-      setState(true);
-      darkThemeButtonIcon.src = SOURCES.SUN_ICON;
-      darkThemeButtonText.innerText = "Light theme";
-      break;
-    default:
-      initState();
-      break;
+// Set icon template theme button
+const setIconTemplateBtn = (colorIcon) => {
+  let icon;
+  if (colorIcon === "dark") {
+    icon = SOURCES.PALETTE_ICON_D;
   }
+  if (colorIcon === "light") {
+    icon = SOURCES.PALETTE_ICON_W;
+  }
+  templateThemeButtonIcon.src = icon;
 };
 
-// Add dark theme button in option menu.
-const addDarkThemeButton = () => {
+// Add template theme button in option menu.
+const addTemplateThemeButton = () => {
   let optionsMenu = document.querySelector("._01UL2");
 
   // insert our button above the "Settings" button.
   if (optionsMenu)
-    optionsMenu.insertBefore(darkThemeButton, optionsMenu.children[2]);
+    optionsMenu.insertBefore(templateThemeButton, optionsMenu.children[2]);
 };
 
 // Add links to footer nav
@@ -379,6 +560,14 @@ const addFirstIntall = (first_install, r) => {
   });
 };
 
+// get object from storage
+const getObject = (string, list) => {
+  for (const item in list) {
+    if (item === string) {
+      return list[item];
+    }
+  }
+};
 // App
 const App = () => {
   // Build

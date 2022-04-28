@@ -116,6 +116,24 @@
 	height: 16px;
 	padding-right: 12px;
 }
+/* toggle dark button */
+#template-theme-modal-button {
+	display: flex;
+    flex-direction: row;
+	align-items: center;
+	height: 37px;
+	border: none;
+	text-align: left;
+	padding-left: 16px;
+	cursor: pointer;
+    user-select: none;
+}
+
+#template-theme-modal-button img {
+	width: 16px;
+	height: 16px;
+	padding-right: 12px;
+}
 
 /* Animations */
 
@@ -237,4 +255,135 @@ body {
 /* footer copyright */
 footer[role="contentinfo"] .qF0y9.Igw0E.IwRSH.eGOV_._4EzTm._5VUwz {
     display: none;
+}
+
+/* Modal */
+.modal-dark-theme{
+    display: block;
+    position: fixed;
+    z-index: 30;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    
+}
+.modal-dark-theme .modal-dark-theme-box{
+    background: rgba(var(--b3f,239,239,239),1);
+    border-radius: 5px;
+    margin: 15% auto;
+    padding: max(3vw, 2rem);
+    width: clamp(300px, 90%, 700px);
+    position: relative;
+    box-shadow:  0px 0px 3px 1px #d0d0d0;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    
+}
+.modal-dark-theme .modal-dark-theme-box .modal-box-themes{
+    display: flex;
+    flex-flow: column nowrap;
+    border-radius: 5px;
+    width: calc(20% - 1rem);
+    padding: .7rem;
+    text-align: center;
+    background: rgba(var(--b3f,239,239,239),1);
+    border: 1px solid rgba(var(--ce3, 239, 239, 239),1);
+    box-shadow: 0px 0px 1px 1px #d0d0d0;
+    cursor: pointer;
+}
+.modal-theme {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .7rem;
+}
+.modal-title{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+}
+.title-modal {
+    font-size: 2rem;
+    font-weight: 600;
+}
+.sub-title-modal{
+    font-size: 1.2rem;
+}
+.modal-dark-theme-box img{
+    width: 16px;
+	height: 16px;
+}
+.modal-dark-theme-box p, .modal-dark-theme-box span, .modal-dark-theme-box h4{
+    color: rgba(var(--p-modal, 0, 0, 0), 1);
+    text-transform: capitalize;
+    font-family: "Poppins", sans-serif !important;
+}
+.list-modal-item {
+    display: flex;
+    flex-flow: row wrap;
+    gap: .7rem;
+}
+#close-modal{
+ position: absolute;
+ top: 1rem;
+ right: 1rem;
+ cursor: pointer;
+}
+#close-modal img {
+    height: 24px;
+    width: 24px;
+}
+
+/* Style border box */
+.box-square {
+    border-radius: none;
+}
+.box-rounded {
+    border-radius: 3px;
+}
+.box-circle {
+    border-radius: 20px;
+}
+/* add post border */
+._1XyCr{
+    border: inset;
+}
+/* menu drop down */
+.uo5MA::before{
+    content: ' ';
+    box-shadow: 0px 0px 4px 2px #d0d0d0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+}
+.AvhYw::before{
+    content: ' ';
+    background: linear-gradient(-45deg, rgb(var( --b3f)) 65%,#d0d0d0 100%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+}
+/* header shadow */
+._lz6s{
+    box-shadow: 0px 0px 3px 2px rgb(var(--f75));
+}
+._lz6s::before{
+    content: ' ';
+    height: 1px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    background-color: rgb(var(--b3f));
+    position: absolute;
 }
