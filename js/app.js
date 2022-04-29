@@ -277,7 +277,6 @@ const initState =  () => {
 
 // toggle modal
 const toggleTemplateTheme = () => {
-  console.log("Show modal");
   const backgroundModal = document.createElement("div");
   backgroundModal.classList.add("modal-dark-theme");
   document.body.appendChild(backgroundModal);
@@ -360,12 +359,10 @@ const toggleTemplateTheme = () => {
   modalBox.appendChild(closeModal);
   setIconModal();
   closeModal.addEventListener("click", () => {
-    console.log('close');
     backgroundModal.remove();
   });
   window.addEventListener("click", (event) => {
     if (event.target == backgroundModal) {
-      console.log('close');
       backgroundModal.remove();
     }
   });
@@ -456,9 +453,7 @@ const addThemeToBody = async (e) => {
   const targetElement = document.head || document.documentElement;
     if (themeColorMetaElement) {
       themeColorMetaElement.setAttribute("content", "#000000");
-
-      console.log(e.css);
-      const url = await apiGetTheme(e.css);
+      const url = await apiGetTheme(e);
       cssTheme.href = url;
       setIconTemplateBtn(e.iconColor);
       targetElement.appendChild(cssTheme);
@@ -469,7 +464,6 @@ const addThemeToBody = async (e) => {
 
 // Set icon template theme button
 const setIconTemplateBtn = (colorIcon) => {
-  console.log(colorIcon);
   let icon;
   if (colorIcon === "dark") {
     icon = SOURCES.PALETTE_ICON_D;
@@ -608,7 +602,14 @@ const getObject = (string, list) => {
 // Call API for get theme
     // Add id user here for protect theme
 const apiGetTheme = async (theme) => {
-  const res = await fetch(`http://localhost:8000/theme/${theme}`, {
+  let url;
+  if(theme.premium === false) {
+    url = `http://localhost:8000/theme/${theme.css}`;
+  }
+  if(theme.premium === true) {
+    console.log('not allowed');
+  }
+  const res = await fetch(url , {
     method: "GET",
   })
   const ourTheme = await res.url;
