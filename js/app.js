@@ -70,7 +70,7 @@ let themeList = {
     css: "green",
     img: "img/green",
     iconColor: "light",
-    premium: true,
+    premium: false,
   },
   test: {
     title: "test",
@@ -409,27 +409,21 @@ const itemBoxSelectTemplate = (e) => {
   switch (e.title) {
     case "white":
       addThemeToBody(e);
-      setTheme("white");
       break;
     case "red":
       addThemeToBody(e);
-      setTheme("red");
       break;
     case "blue":
       addThemeToBody(e);
-      setTheme("blue");
       break;
     case "black":
       addThemeToBody(e);
-      setTheme("black");
       break;
     case "green":
       addThemeToBody(e);
-      setTheme("green");
       break;
     case "test":
       addThemeToBody(e);
-      setTheme("test");
       break;
     default:
       addThemeToBody(e);
@@ -458,6 +452,7 @@ const addThemeToBody = async (e) => {
       setIconTemplateBtn(e.iconColor);
       targetElement.appendChild(cssTheme);
       targetElement.appendChild(themeColorMetaElement);
+      setTheme(e.title);
     }
   }
 };
@@ -602,18 +597,28 @@ const getObject = (string, list) => {
 // Call API for get theme
     // Add id user here for protect theme
 const apiGetTheme = async (theme) => {
-  let url;
+  let iduser = '1234';
   if(theme.premium === false) {
-    url = `http://localhost:8000/theme/${theme.css}`;
+    console.warn('allowed');
   }
   if(theme.premium === true) {
-    console.log('not allowed');
+    console.warn('not allowed');
   }
-  const res = await fetch(url , {
-    method: "GET",
+  const res = await fetch(`http://localhost:8000/theme/${theme.css}` , {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify({
+      id : iduser,
+      premium : theme.premium
+    })
   })
-  const ourTheme = await res.url;
-  return ourTheme;
+  if(res.url){
+    const ourTheme = await res.url;
+    return ourTheme;
+  }
+  else{ 
+    console.error('Not member premium');
+  }
 }
 
 // App
