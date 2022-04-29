@@ -46,28 +46,28 @@ let themeList = {
   },
   red: {
     title: "red",
-    css: "STYLETHEMERED",
+    css: "red",
     img: "img/red",
     iconColor: "light",
     premium: false,
   },
   blue: {
     title: "blue",
-    css: "STYLETHEMEBLUE",
+    css: "blue",
     img: "img/blue",
     iconColor: "light",
     premium: false,
   },
   black: {
     title: "black",
-    css: "STYLETHEMEBLACK",
+    css: "black",
     img: "img/black",
     iconColor: "light",
     premium: false,
   },
   green: {
     title: "green",
-    css: "STYLETHEMEGREEN",
+    css: "green",
     img: "img/green",
     iconColor: "light",
     premium: true,
@@ -171,12 +171,8 @@ const isAuthorized = () => {
 
 // Sources (images, assets)
 let SOURCES = {
-  STYLETHEMEGREEN: "",
-  STYLETHEMERED: getBrowser().extension.getURL("css/theme-red.css"),
-  STYLETHEMEBLUE: getBrowser().extension.getURL("css/theme-blue.css"),
-  STYLETHEMEBLACK: getBrowser().extension.getURL("css/theme-black.css"),
-  PALETTE_ICON_W: getBrowser().extension.getURL("img/palette-fill-light.svg"),
-  PALETTE_ICON_D: getBrowser().extension.getURL("img/palette-fill-dark.svg"),
+  PALETTE_ICON_D: getBrowser().extension.getURL('img/palette-fill-dark.svg'),
+  PALETTE_ICON_W: getBrowser().extension.getURL('img/palette-fill-light.svg'),
   ARROW_ICON_W: getBrowser().extension.getURL(
     "img/arrow-down-s-line-light.svg"
   ),
@@ -193,12 +189,12 @@ let SOURCES = {
 
 // Elements
 const initElements = () => {
-  // Theme css
-  cssTheme = document.createElement("link");
-  cssTheme.rel = "stylesheet";
-  cssTheme.type = "text/css";
-  cssTheme.id = "instagram-theme-stylesheet";
-
+   // Theme css
+   cssTheme = document.createElement("link");
+   cssTheme.rel = "stylesheet";
+   cssTheme.type = "text/css";
+   cssTheme.id = "instagram-theme-stylesheet";
+   
   // Build wrapper element
   wrapper = document.createElement("div");
   wrapper.id = "instagram-dark-wrapper";
@@ -262,22 +258,20 @@ const getTheme = () => theme;
 const setTheme = (r) => {
   theme = r;
   getStorage().set({ theme: r }, () =>
-    console.log("[storage] Theme saved: " + r)
+    console.info("[storage] Theme saved: " + r)
   );
 };
 
 // init the state or initialize it in local storage.
 const initState =  () => {
   getStorage().get((result) => {
-    console.log(result);
     console.info("[storage] theme loaded: " + result.theme);
-    // call api for get css 
+    // call api for get css by iduser
     // const loggingData = getCachedData(
     //   "logging-params-v3",
     //   "/data/logging_params/"
     // );
-
-    itemBoxSelectTemplate(result.theme);
+    itemBoxSelectTemplate(getObject(result.theme, themeList));
   });
 };
 
@@ -366,18 +360,20 @@ const toggleTemplateTheme = () => {
   modalBox.appendChild(closeModal);
   setIconModal();
   closeModal.addEventListener("click", () => {
+    console.log('close');
     backgroundModal.remove();
   });
   window.addEventListener("click", (event) => {
     if (event.target == backgroundModal) {
+      console.log('close');
       backgroundModal.remove();
     }
   });
 };
 
 // set icon with contraste
-const setIconModal = () => {
-  let colorIcon = getObject(getTheme(), themeList);
+const setIconModal = (theme = getTheme()) => {
+  let colorIcon = getObject(theme, themeList);
   let icon;
   let close;
   if (colorIcon.iconColor === "dark") {
@@ -399,7 +395,6 @@ const setIconModal = () => {
 const itemBox = (divTarget, theme) => {
   const box = document.createElement("div");
   box.classList.add("modal-box-themes");
-  console.log(theme);
   // const imgItemBox = document.createElement('img');
   // imgItemBox.src = getBrowser().extension.getURL(theme.img)
   const titleItemBox = document.createElement("p");
@@ -414,7 +409,6 @@ const itemBox = (divTarget, theme) => {
 };
 // Select template theme
 const itemBoxSelectTemplate = (e) => {
-  console.log(e);
   switch (e.title) {
     case "white":
       addThemeToBody(e);
@@ -440,7 +434,7 @@ const itemBoxSelectTemplate = (e) => {
       addThemeToBody(e);
       setTheme("test");
       break;
-    case "default":
+    default:
       addThemeToBody(e);
       setTheme("white");
       break;
@@ -457,22 +451,25 @@ const addThemeToBody = async (e) => {
     if (document.getElementById(cssTheme.id)) {
       document.getElementById(cssTheme.id).remove();
     }
-  }
-  const targetElement = document.head || document.documentElement;
-  if (themeColorMetaElement) {
-    themeColorMetaElement.setAttribute("content", "#000000");
-
-    console.log(e.css);
-    const url = await apiGetTheme(e.css);
-    cssTheme.href = url;
     setIconTemplateBtn(e.iconColor);
-    targetElement.appendChild(cssTheme);
-    targetElement.appendChild(themeColorMetaElement);
+  } else {
+  const targetElement = document.head || document.documentElement;
+    if (themeColorMetaElement) {
+      themeColorMetaElement.setAttribute("content", "#000000");
+
+      console.log(e.css);
+      const url = await apiGetTheme(e.css);
+      cssTheme.href = url;
+      setIconTemplateBtn(e.iconColor);
+      targetElement.appendChild(cssTheme);
+      targetElement.appendChild(themeColorMetaElement);
+    }
   }
 };
 
 // Set icon template theme button
 const setIconTemplateBtn = (colorIcon) => {
+  console.log(colorIcon);
   let icon;
   if (colorIcon === "dark") {
     icon = SOURCES.PALETTE_ICON_D;
@@ -527,7 +524,7 @@ const initFirstInstall = async () => {
 
   // get first_install in local storage.
   getStorage().get(["first_install"], (result) => {
-    console.log("[storage] first_install loaded: " + result.first_install);
+    console.info("[storage] first_install loaded: " + result.first_install);
 
     // init first_variable with the local storage result or an empty array
     const first_install =
@@ -593,7 +590,7 @@ const initFirstInstall = async () => {
 const addFirstIntall = (first_install, r) => {
   first_install.push(r);
   getStorage().set({ first_install: JSON.stringify(first_install) }, () => {
-    console.log(
+    console.info(
       "[storage] first_install saved: " + JSON.stringify(first_install)
     );
   });
@@ -609,15 +606,12 @@ const getObject = (string, list) => {
 };
 
 // Call API for get theme
-    // Add id user here
+    // Add id user here for protect theme
 const apiGetTheme = async (theme) => {
-  const response = await fetch(`http://localhost:8000/theme/${theme}`, {
+  const res = await fetch(`http://localhost:8000/theme/${theme}`, {
     method: "GET",
-    mode: "no-cors",
-    cache: "no-cache",
-  });
-  const ourTheme = response;
-  // https://onruntime.com/static/css/theme-green.css
+  })
+  const ourTheme = await res.url;
   return ourTheme;
 }
 
