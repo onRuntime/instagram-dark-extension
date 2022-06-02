@@ -1,11 +1,11 @@
 {
     "name": "Dark Theme for Instagram™",
-    "version": "1.1.17",
+    "version": "1.1.18",
     "description": "Dark Theme for Instagram™",
     "icons": {
         "128": "img/icon.png"
     },
-    "manifest_version": 2,
+    "manifest_version": 3,
     "content_scripts": [
         {
             "js": [
@@ -20,11 +20,21 @@
         }
     ],
     "web_accessible_resources": [
-        "css/style.css",
-        "img/*"
+        {
+            "resources": [
+                "css/style.css",
+                "img/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
     ],
     "permissions": [
-        "storage",
+        "storage"
+    ],
+    "content_security_policy": {},
+    "host_permissions": [
         "*://fonts.googleapis.com/"
     ]
 }
